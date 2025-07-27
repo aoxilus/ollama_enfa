@@ -1,0 +1,32 @@
+# Cursor AI Configuration for Ollama
+# Model: smollm2:135m
+# Endpoint: http://localhost:11434
+
+# AI Provider Configuration
+AI_PROVIDER=ollama
+OLLAMA_ENDPOINT=http://localhost:11434
+OLLAMA_MODEL=smollm2:135m
+
+# Custom AI Configuration
+CUSTOM_AI_ENDPOINT=http://localhost:11434/api/generate
+CUSTOM_AI_MODEL=smollm2:135m
+CUSTOM_AI_PROVIDER=ollama
+
+# Programming Style Rules
+- Use if / else if only
+- No else blocks
+- No switch / case / when
+- No try / catch
+- Validate with if before parsing or accessing
+- Use for loop when count or items are known
+- Use while loop when condition is unknown
+- Use early return to avoid nesting
+- No verbose answers
+- Use short variable names
+- Use short function parameters
+- No placeholder code
+- Do not explain, just make it work
+- No unnecessary comments
+- No lectures or opinions
+- Minimize dependencies
+- Flat code structure only 
