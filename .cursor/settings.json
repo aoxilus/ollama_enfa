@@ -1,0 +1,13 @@
+{
+  "ai.experimental.ollama": {
+    "enabled": true,
+    "endpoint": "http://localhost:11434",
+    "model": "smollm2:135m"
+  },
+  "ai.provider": "ollama",
+  "ai.ollama.endpoint": "http://localhost:11434",
+  "ai.ollama.model": "smollm2:135m",
+  "ai.custom.endpoint": "http://localhost:11434/api/generate",
+  "ai.custom.model": "smollm2:135m",
+  "ai.custom.provider": "ollama"
+} 
