@@ -1,0 +1,21 @@
+{
+  "ollama": {
+    "model": "smollm2:135m",
+    "endpoint": "http://localhost:11434",
+    "timeout": 120
+  },
+  "watch": {
+    "maxSizeKB": 200,
+    "debounceSec": 5,
+    "extensions": ["*.py", "*.js", "*.ts", "*.html", "*.css", "*.json", "*.cs", "*.cpp", "*.h"]
+  },
+  "output": {
+    "responsesFile": "ollama_responses.txt",
+    "suggestionsDir": "sugerencias_ai"
+  },
+  "features": {
+    "autoDetectModel": true,
+    "contextAnalysis": true,
+    "interactiveCommands": true
+  }
+} 

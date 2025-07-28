@@ -53,6 +53,8 @@ ollama_simple_ps.bat "How to optimize this function?"
 - ✅ **Output file**: `ollama_responses.txt`
 - ✅ **Multiple formats**: Python, JS, HTML, CSS, PHP, etc.
 - ✅ **Terminal colors**: Colored output
+- ✅ **File watching**: Automatic analysis of changed files
+- ✅ **Interactive dashboard**: Real-time statistics and commands
 
 ### Usage Examples
 ```bash
@@ -67,7 +69,10 @@ ollama_simple.bat "How to optimize this function?"
 
 # General questions
 ollama_simple_ps.bat "What is the capital of France?"
-```
+
+# File watching (automatic analysis)
+ollama_watch.bat                    # Start automatic monitoring
+ollama_watch.bat "Analyze this code" # Manual query with watch features
 
 ## 📁 Project Structure
 
@@ -79,18 +84,22 @@ ollama_desktop_cursorAI/
 │   └── requirements.txt      # Dependencies
 ├── ⚡ powershell/
 │   ├── ollama_simple.ps1     # Simplified version
-│   └── ollama_context.ps1    # Complete version
+│   ├── ollama_context.ps1    # Complete version
+│   └── ollama_watch.ps1      # File watcher with auto-analysis
 ├── 🚀 Batch Scripts
 │   ├── ollama_simple.bat     # Python simple
 │   ├── ollama_context.bat    # Python complete
 │   ├── ollama_simple_ps.bat  # PowerShell simple
-│   └── ollama_context_ps.bat # PowerShell complete
+│   ├── ollama_context_ps.bat # PowerShell complete
+│   └── ollama_watch.bat      # File watcher (auto/manual)
 ├── 📄 Configuration
 │   ├── .cursorrules          # Programming rules
 │   ├── .cursor/settings.json # Cursor AI configuration
+│   ├── config.json           # Project configuration
 │   └── README.md             # This file
 └── 📝 Output
-    └── ollama_responses.txt  # Response buffer
+    ├── ollama_responses.txt  # Response buffer
+    └── sugerencias_ai/       # AI suggestions directory
 ```
 
 ## 🔧 Cursor AI Configuration
@@ -130,6 +139,10 @@ ollama_simple.bat "What does this code do?"
 # Quick query with PowerShell
 ollama_simple_ps.bat "How to optimize this function?"
 
+# File watching (automatic analysis)
+ollama_watch.bat                    # Start monitoring
+ollama_watch.bat "Analyze this code" # Manual query
+
 # View saved responses
 type ollama_responses.txt
 ```
@@ -154,6 +167,21 @@ ollama_simple.bat "Are there errors in this code?"
 ```bash
 ollama_simple.bat "How to document this function?"
 ollama_simple.bat "What comments to add to this code?"
+```
+
+### Automatic File Analysis
+```bash
+# Start automatic monitoring
+ollama_watch.bat
+
+# Monitor specific directory
+ollama_watch.bat "C:\my-project"
+
+# Interactive commands while monitoring:
+# [s] - Show statistics
+# [r] - Refresh summary
+# [c] - Clear screen
+# [q] - Quit monitoring
 ```
 
 ## 🐛 Troubleshooting
@@ -209,6 +237,16 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 4. Save-Response → Same saving
 ```
 
+**PowerShell (`ollama_watch.ps1`)**
+```powershell
+# File watcher flow:
+1. Test-OllamaConnection → Verify service + detect best model
+2. FileSystemWatcher → Monitor file changes in real-time
+3. Analyze-File → Process changed files with context
+4. Save-Response + Save-Suggestions → Dual output system
+5. Interactive-Dashboard → Real-time statistics and commands
+```
+
 #### 3. **Context Mechanism**
 - **Input**: User question + project files
 - **Processing**: 
@@ -248,6 +286,8 @@ User → Script (Python/PowerShell) → Ollama API → Local Model → Response 
 - Local debugging with context
 - Automatic documentation
 - Technical queries with project knowledge
+- Real-time file monitoring and analysis
+- Interactive development assistance
 
 This system acts as an **intelligent bridge** between local development environment and local AI model, providing project-specific context for more accurate queries.
 
