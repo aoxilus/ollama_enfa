@@ -179,6 +179,78 @@ pip install -r python/requirements.txt
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
+## 🤖 Technical Architecture (For AI Understanding)
+
+### System Components
+
+#### 1. **Ollama Local Server**
+- **Function**: Local AI model server
+- **Endpoint**: `http://localhost:11434`
+- **Model**: `smollm2:135m` (135M parameters, 270MB)
+- **Protocol**: REST API with `/api/generate` and `/api/tags` endpoints
+
+#### 2. **Integration Scripts**
+
+**Python (`ollama_simple.py`)**
+```python
+# Execution flow:
+1. check_ollama_connection() → Verify service + detect best model
+2. get_project_files() → Read project files (max 10, <50KB)
+3. query_ollama() → Send prompt with context to API
+4. save_response() → Save to ollama_responses.txt
+```
+
+**PowerShell (`ollama_simple.ps1`)**
+```powershell
+# Equivalent flow:
+1. Test-OllamaConnection → Same verification
+2. Get-ProjectFiles → Same file reading
+3. Invoke-OllamaQuery → Same API query
+4. Save-Response → Same saving
+```
+
+#### 3. **Context Mechanism**
+- **Input**: User question + project files
+- **Processing**: 
+  - Scan patterns: `*.py`, `*.js`, `*.html`, `*.css`, `*.json`, `*.md`, `*.txt`
+  - Read content (first 2000 characters per file)
+  - Build structured prompt
+- **Output**: Ollama response + buffer save
+
+#### 4. **Model Management**
+```python
+# Selection algorithm:
+for model in available_models:
+    size_mb = model.size / (1024 * 1024)
+    if size_mb > largest_size:
+        best_model = model.name
+```
+
+#### 5. **Error Handling**
+- **Connection**: 5s timeout for verification, 60s for queries
+- **Models**: Fallback if no models available
+- **Files**: Skip large or inaccessible files
+- **Encoding**: UTF-8 with error handling
+
+#### 6. **Data Flow**
+```
+User → Script (Python/PowerShell) → Ollama API → Local Model → Response → File
+```
+
+#### 7. **Technical Features**
+- **Buffer**: Maintains last 10 responses
+- **Format**: Timestamp + Q&A in `ollama_responses.txt`
+- **Cross-platform**: Windows batch scripts for easy execution
+- **Modular**: Python/PowerShell separation for flexibility
+
+#### 8. **Use Cases**
+- Project-specific code analysis
+- Local debugging with context
+- Automatic documentation
+- Technical queries with project knowledge
+
+This system acts as an **intelligent bridge** between local development environment and local AI model, providing project-specific context for more accurate queries.
+
 ## 📄 License
 
 This project is licensed under the MIT License.
@@ -191,4 +263,4 @@ This project is licensed under the MIT License.
 
 ---
 
-*Developed by [aoxilus](https://github.com/aoxilus)* 
+*Developed by [aoxilus](https://github.com/aoxilus)*
