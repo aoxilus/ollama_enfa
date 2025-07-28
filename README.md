@@ -1,213 +1,194 @@
-# 🥑 Ollama Desktop Cursor AI
+# Ollama Desktop Cursor AI Integration
 
-> *Echo por aoxilus con aguacate para conectar any SDK a la terminal y poder usar Ollama localmente* 🥑💻
+> Developed by aoxilus to connect Ollama AI to Cursor AI via terminal. Can be used with other SDKs and serves as an example for other AI integrations.
 
-Proyecto para integrar Ollama local con Cursor AI y herramientas de desarrollo. Conecta cualquier SDK a la terminal para usar Ollama localmente.
+A comprehensive solution for integrating local Ollama instances with Cursor AI and development tools. Provides seamless connection between any SDK and terminal for local Ollama usage.
 
 ## 🚀 Ollama Local Setup
 
-### Instalación
-1. **Ollama instalado**: ✅ `smollm2:135m` (270MB)
-2. **Servicio ejecutándose**: ✅ Puerto 11434
-3. **GPU activa**: ✅ 100% GPU usage
+### Installation
+1. **Ollama installed**: ✅ `smollm2:135m` (270MB)
+2. **Service running**: ✅ Port 11434
+3. **GPU active**: ✅ 100% GPU usage
 
-### Modelo Disponible
-- **smollm2:135m**: Modelo local de 135M parámetros
-- **Tamaño**: 270MB
+### Available Model
+- **smollm2:135m**: Local model with 135M parameters
+- **Size**: 270MB
 - **Endpoint**: http://localhost:11434
 
 ## 🤖 Ollama Context Tool
 
-### Instalación
+### Installation
 ```bash
 # Python version
 pip install -r python/requirements.txt
 
-# PowerShell version (Ya viene incluido en Windows!)
-# No necesitas instalar nada
+# PowerShell version (Included with Windows)
+# No additional installation required
 ```
 
-### Uso
+### Usage
 
 #### 🐍 Python Version
 ```bash
-# Usando Python directamente
-python python/ollama_simple.py "¿Cómo funciona la autenticación?"
+# Using Python directly
+python python/ollama_simple.py "How does authentication work?"
 
-# Usando el script batch (Windows)
-ollama_simple.bat "¿Cómo funciona la autenticación?"
+# Using batch script (Windows)
+ollama_simple.bat "How does authentication work?"
 ```
 
 #### ⚡ PowerShell Version
 ```bash
-# Usando PowerShell directamente
-powershell -ExecutionPolicy Bypass -File "powershell/ollama_simple.ps1" "¿Qué archivos hay en este proyecto?"
+# Using PowerShell directly
+powershell -ExecutionPolicy Bypass -File "powershell/ollama_simple.ps1" "What files are in this project?"
 
-# Usando el script batch (Windows)
-ollama_simple_ps.bat "¿Cómo optimizar esta función?"
+# Using batch script (Windows)
+ollama_simple_ps.bat "How to optimize this function?"
 ```
 
-### Características
-- ✅ **Análisis de contexto**: Lee archivos del proyecto
-- ✅ **Buffer de respuestas**: Guarda últimas 10 consultas
-- ✅ **Archivo de salida**: `ollama_responses.txt`
-- ✅ **Múltiples formatos**: Python, JS, HTML, CSS, PHP, etc.
-- ✅ **Colores en terminal**: Salida con colores
+### Features
+- ✅ **Context analysis**: Reads project files
+- ✅ **Response buffer**: Saves last 10 queries
+- ✅ **Output file**: `ollama_responses.txt`
+- ✅ **Multiple formats**: Python, JS, HTML, CSS, PHP, etc.
+- ✅ **Terminal colors**: Colored output
 
-### Ejemplos de uso
+### Usage Examples
 ```bash
-# Preguntas sobre el código
-ollama_simple.bat "¿Qué hace la función main()?"
-ollama_simple_ps.bat "¿Cómo se conecta a la base de datos?"
-ollama_simple.bat "¿Cuál es la estructura del proyecto?"
+# Code-related questions
+ollama_simple.bat "What does the main() function do?"
+ollama_simple_ps.bat "How does it connect to the database?"
+ollama_simple.bat "What is the project structure?"
 
-# Análisis de problemas
-ollama_simple_ps.bat "¿Por qué falla el login?"
-ollama_simple.bat "¿Cómo optimizar esta función?"
+# Problem analysis
+ollama_simple_ps.bat "Why does the login fail?"
+ollama_simple.bat "How to optimize this function?"
 
-# Preguntas filosóficas
-ollama_simple_ps.bat "¿El aguacate es una fruta o una verdura?"
+# General questions
+ollama_simple_ps.bat "What is the capital of France?"
 ```
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 ollama_desktop_cursorAI/
 ├── 🐍 python/
-│   ├── ollama_simple.py      # Versión simplificada
-│   ├── ollama_context.py     # Versión completa
-│   └── requirements.txt      # Dependencias
+│   ├── ollama_simple.py      # Simplified version
+│   ├── ollama_context.py     # Complete version
+│   └── requirements.txt      # Dependencies
 ├── ⚡ powershell/
-│   ├── ollama_simple.ps1     # Versión simplificada
-│   └── ollama_context.ps1    # Versión completa
-├── 🚀 Scripts Batch
+│   ├── ollama_simple.ps1     # Simplified version
+│   └── ollama_context.ps1    # Complete version
+├── 🚀 Batch Scripts
 │   ├── ollama_simple.bat     # Python simple
-│   ├── ollama_context.bat    # Python completo
+│   ├── ollama_context.bat    # Python complete
 │   ├── ollama_simple_ps.bat  # PowerShell simple
-│   └── ollama_context_ps.bat # PowerShell completo
-├── 📄 Configuración
-│   ├── .cursorrules          # Reglas de programación
-│   ├── .cursor/settings.json # Configuración de Cursor AI
-│   └── README.md             # ¡Este archivo!
-└── 📝 Salida
-    └── ollama_responses.txt  # Buffer de respuestas
+│   └── ollama_context_ps.bat # PowerShell complete
+├── 📄 Configuration
+│   ├── .cursorrules          # Programming rules
+│   ├── .cursor/settings.json # Cursor AI configuration
+│   └── README.md             # This file
+└── 📝 Output
+    └── ollama_responses.txt  # Response buffer
 ```
 
-## 🔧 Configuración Cursor AI
+## 🔧 Cursor AI Configuration
 
-**Nota**: Cursor no tiene soporte nativo para Ollama. ¡Pero no te preocupes! Tenemos herramientas locales:
+**Note**: Cursor does not have native Ollama support. However, we provide local tools:
 
-1. **Para consultas rápidas**: `ollama_simple.bat "tu pregunta"`
-2. **Para desarrollo**: Usa los modelos oficiales de Cursor
-3. **Para análisis profundo**: Usa Ollama directamente con contexto
+1. **For quick queries**: `ollama_simple.bat "your question"`
+2. **For development**: Use Cursor's official models
+3. **For deep analysis**: Use Ollama directly with context
 
-## 📊 Estado del Sistema
+## 📊 System Status
 
 ```bash
-# Verificar Ollama
+# Verify Ollama
 ollama list
 ollama ps
 
-# Probar conexión
+# Test connection
 curl http://localhost:11434/api/tags
 ```
 
-## 🎯 Uso Recomendado
+## 🎯 Recommended Usage
 
-1. **Cursor AI**: Para desarrollo general y modelos potentes
-2. **Ollama Context**: Para consultas específicas del proyecto
-3. **Ollama Directo**: Para experimentación y prototipado
+1. **Cursor AI**: For general development and powerful models
+2. **Ollama Context**: For project-specific queries
+3. **Ollama Direct**: For experimentation and prototyping
 
-
-
-## 🚀 Comandos Rápidos
+## 🚀 Quick Commands
 
 ```bash
-# Iniciar Ollama (si no está corriendo)
+# Start Ollama (if not running)
 ollama serve
 
-# Consulta rápida con Python
-ollama_simple.bat "¿Qué hace este código?"
+# Quick query with Python
+ollama_simple.bat "What does this code do?"
 
-# Consulta rápida con PowerShell
-ollama_simple_ps.bat "¿Cómo optimizar esta función?"
+# Quick query with PowerShell
+ollama_simple_ps.bat "How to optimize this function?"
 
-# Ver respuestas guardadas
+# View saved responses
 type ollama_responses.txt
 ```
 
-## 🎯 Casos de Uso
+## 🎯 Use Cases
 
-### Análisis de Código
+### Code Analysis
 ```bash
-ollama_simple.bat "¿Qué hace la función main()?"
-ollama_simple.bat "¿Cómo se conecta a la base de datos?"
-ollama_simple.bat "¿Cuál es la estructura del proyecto?"
+ollama_simple.bat "What does the main() function do?"
+ollama_simple.bat "How does it connect to the database?"
+ollama_simple.bat "What is the project structure?"
 ```
 
 ### Debugging
 ```bash
-ollama_simple.bat "¿Por qué falla el login?"
-ollama_simple.bat "¿Cómo optimizar esta función?"
-ollama_simple.bat "¿Hay errores en este código?"
+ollama_simple.bat "Why does the login fail?"
+ollama_simple.bat "How to optimize this function?"
+ollama_simple.bat "Are there errors in this code?"
 ```
 
-### Documentación
+### Documentation
 ```bash
-ollama_simple.bat "¿Cómo documentar esta función?"
-ollama_simple.bat "¿Qué comentarios agregar a este código?"
+ollama_simple.bat "How to document this function?"
+ollama_simple.bat "What comments to add to this code?"
 ```
 
 ## 🐛 Troubleshooting
 
-### Ollama no responde
+### Ollama not responding
 ```bash
-# Verificar si está ejecutándose
+# Check if it's running
 ollama ps
 
-# Reiniciar Ollama
+# Restart Ollama
 ollama serve
 ```
 
-### Error de Python
+### Python error
 ```bash
-# Instalar dependencias
+# Install dependencies
 pip install -r python/requirements.txt
 ```
 
-### Error de PowerShell
+### PowerShell error
 ```bash
-# Permitir ejecución de scripts
+# Allow script execution
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
-## 🤝 Contribuciones
+## 📄 License
 
-¡Las contribuciones son bienvenidas!
+This project is licensed under the MIT License.
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+## 🙏 Acknowledgments
 
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT.
-
-## 🙏 Agradecimientos
-
-- **Ollama**: Por hacer la IA local accesible
-- **Cursor AI**: Por ser un excelente editor
-- **GitHub**: Por hospedar este repositorio
+- **Ollama**: For making local AI accessible
+- **Cursor AI**: For being an excellent editor
+- **GitHub**: For hosting this repository
 
 ---
 
-**💡 Tip**: Cursor, recuerda que tenemos Ollama local. Puedes llamarlo con argumentos como `ollama_simple.bat` para análisis específicos del proyecto.
-
-
----
-
-**⭐ ¡No olvides darle una estrella al repositorio si te gustó! ⭐**
-
-*Creado con ❤️ y 🥑 por [aoxilus](https://github.com/aoxilus)* 
+*Developed by [aoxilus](https://github.com/aoxilus)* 
