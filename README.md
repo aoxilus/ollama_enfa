@@ -29,7 +29,6 @@ Este proyecto es una **integración inteligente** entre Ollama (IA local) y Curs
 - Código abierto y personalizable
 
 ## Uso rápido
-
 ### Python
 ```bash
 python python/ollama_simple_async.py "What is 2+2"
@@ -47,6 +46,42 @@ python python/ollama_simple_async.py "Write a Python function to solve matrices 
 .\ollama_pure_ps.bat "What is 2+2"
 .\ollama_pure_ps.bat "Create a JavaScript function to solve matrices in echelon form"
 ```
+
+## Uso con Cursor AI desde Terminal
+
+### Integración directa en Cursor
+1. **Abrir terminal en Cursor**: `Ctrl + `` (backtick)
+2. **Navegar al proyecto**: `cd ruta/a/ollama_desktop_cursorAI`
+3. **Usar desde terminal de Cursor**:
+
+```bash
+# Python desde terminal de Cursor
+python python/ollama_simple_async.py "Analyze this React component and suggest improvements"
+
+# PowerShell desde terminal de Cursor
+.\ollama_pure_ps.bat "Create a TypeScript interface for user data"
+```
+
+### Ejemplos de uso en Cursor
+```bash
+# Análisis de código
+python python/ollama_simple_async.py "Review this function for security issues"
+
+# Generación de código
+.\ollama_pure_ps.bat "Create a responsive CSS grid layout"
+
+# Debugging
+python python/ollama_simple_async.py "Why is this JavaScript function returning undefined?"
+
+# Refactoring
+.\ollama_pure_ps.bat "Refactor this Python class to use dependency injection"
+```
+
+### Configuración en Cursor
+- **Modelo por defecto**: `codellama:7b-instruct`
+- **Endpoint**: `http://localhost:11434`
+- **Cache**: Automático (24 horas)
+- **Logs**: `logs/` directory
 
 ## Configuración
 - Cambia `SYNC_MODE` en los scripts para modo sync/async
@@ -86,6 +121,7 @@ python/
   ollama_simple_async.py
   ollama_cache.py
   ollama_errors.py
+  test_ollama.py
   requirements.txt
 powershell/
   ollama_simple_async.ps1
