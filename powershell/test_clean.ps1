@@ -68,7 +68,22 @@ Answer:
     $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
     
     try {
-        $response = Invoke-RestMethod -Uri $url -Method Post -Body ($data | ConvertTo-Json -Depth 10) -ContentType "application/json" -TimeoutSec $Timeout
+        # Create job with timeout
+        $job = Start-Job -ScriptBlock {
+            param($url, $data, $timeout)
+            Invoke-RestMethod -Uri $url -Method Post -Body ($data | ConvertTo-Json -Depth 10) -ContentType "application/json" -TimeoutSec $timeout
+        } -ArgumentList $url, $data, $Timeout
+        
+        # Wait for job with timeout
+        $result = Wait-Job -Job $job -Timeout $Timeout
+        
+        if ($result) {
+            $response = Receive-Job -Job $job
+            Remove-Job -Job $job
+        } else {
+            Remove-Job -Job $job -Force
+            throw "Request timed out after $Timeout seconds"
+        }
         
         $stopwatch.Stop()
         $duration = $stopwatch.ElapsedMilliseconds

@@ -1,19 +1,26 @@
 @echo off
-echo === Quick Ollama Test ===
+REM Quick test with timeout protection
+REM Usage: quick_test.bat [model] [question] [timeout]
+
+setlocal enabledelayedexpansion
+
+set MODEL=%1
+if "%MODEL%"=="" set MODEL=codellama:7b-code-q4_K_M
+
+set QUESTION=%2
+if "%QUESTION%"=="" set QUESTION="What is 2+2?"
+
+set TIMEOUT=%3
+if "%TIMEOUT%"=="" set TIMEOUT=30
+
+echo 🚀 Quick test with timeout protection
+echo 📝 Model: %MODEL%
+echo ❓ Question: %QUESTION%
+echo ⏱️  Timeout: %TIMEOUT% seconds
 echo.
 
-if "%1"=="" (
-    echo Usage: quick_test.bat "question"
-    echo Example: quick_test.bat "What is 2+2?"
-    pause
-    exit /b 1
-)
-
-echo Testing: %1
-echo.
-
-ollama run codellama:7b-code-q4_K_M "%1"
+REM Test with timeout using PowerShell
+powershell -Command "& { $job = Start-Job -ScriptBlock { param($m, $q, $t) python test_fast.py $m $q } -ArgumentList '%MODEL%', '%QUESTION%', %TIMEOUT%; if (Wait-Job -Job $job -Timeout %TIMEOUT%) { Receive-Job -Job $job; Remove-Job -Job $job } else { Remove-Job -Job $job -Force; Write-Host '⏰ Timeout reached after %TIMEOUT% seconds' -ForegroundColor Red } }"
 
 echo.
-echo Test completed.
-pause 
+echo 🏁 Test completed 
