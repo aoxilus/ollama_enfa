@@ -19,7 +19,7 @@ def test_code(model="codellama:7b-code-q4_K_M", question="Write a Python functio
     # Code-specific prompt
     prompt = f"""Write code for: {question}
 
-```python
+```javascript
 """
     
     data = {
@@ -27,11 +27,11 @@ def test_code(model="codellama:7b-code-q4_K_M", question="Write a Python functio
         "prompt": prompt,
         "stream": False,
         "options": {
-            "temperature": 0.2,
-            "num_predict": 200,  # More tokens for code
-            "top_k": 10,
-            "top_p": 0.9,
-            "repeat_penalty": 1.1
+            "temperature": 0.8,  # HIGH temperature for creativity
+            "num_predict": 500,  # HIGH tokens for complete code
+            "top_k": 40,
+            "top_p": 0.95,
+            "repeat_penalty": 1.2
         }
     }
     
@@ -45,7 +45,7 @@ def test_code(model="codellama:7b-code-q4_K_M", question="Write a Python functio
             response_text = result['response'].strip()
             
             print("✅ Response received:")
-            print("```python")
+            print("```javascript")
             print(response_text)
             print("```")
             print()

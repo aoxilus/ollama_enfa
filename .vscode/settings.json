@@ -1,0 +1,30 @@
+{
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "args": [
+        "-NoExit",
+        "-Command",
+        "& { $env:PSDefaultParameterValues = 'Invoke-RestMethod:TimeoutSec=30'; $env:TERMINAL_TIMEOUT = '30'; Write-Host '🚀 Terminal con timeout configurado' -ForegroundColor Green }"
+      ],
+      "env": {
+        "PSDefaultParameterValues": "Invoke-RestMethod:TimeoutSec=30",
+        "TERMINAL_TIMEOUT": "30"
+      }
+    },
+    "Command Prompt": {
+      "path": "cmd.exe",
+      "args": ["/k", "set PSDefaultParameterValues=Invoke-RestMethod:TimeoutSec=30 && set TERMINAL_TIMEOUT=30 && echo 🚀 Terminal con timeout configurado"]
+    }
+  },
+  "terminal.integrated.env.windows": {
+    "PSDefaultParameterValues": "Invoke-RestMethod:TimeoutSec=30",
+    "TERMINAL_TIMEOUT": "30"
+  },
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.confirmOnExit": "never",
+  "terminal.integrated.enablePersistentSessions": false,
+  "terminal.integrated.inheritEnv": false
+} 

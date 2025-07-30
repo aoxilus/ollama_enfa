@@ -38,18 +38,18 @@ function Test-Code {
     Write-Host ""
     
     $url = "http://localhost:11434/api/generate"
-    $prompt = "Write code for: $Question`n`n```python`n" # Code-specific prompt
+    $prompt = "Write code for: $Question`n`n```javascript`n" # Code-specific prompt
     
     $data = @{
         model = $Model
         prompt = $prompt
         stream = $false
         options = @{
-            temperature = 0.2
-            num_predict = 200  # More tokens for code
-            top_k = 10
-            top_p = 0.9
-            repeat_penalty = 1.1
+            temperature = 0.8  # HIGH temperature for creativity
+            num_predict = 500  # HIGH tokens for complete code
+            top_k = 40
+            top_p = 0.95
+            repeat_penalty = 1.2
         }
     }
     
@@ -86,7 +86,7 @@ function Test-Code {
         Write-Host "🕐 Real time: $([Math]::Round($duration / 1000000, 3))s" -ForegroundColor Yellow
         
         # Validate code response
-        if ($response.response -match "def\s+\w+\s*\(" -or $response.response -match "class\s+\w+") {
+        if ($response.response -match "function\s+\w+\s*\(" -or $response.response -match "const\s+\w+" -or $response.response -match "let\s+\w+" -or $response.response -match "var\s+\w+") {
             Write-Host "✅ Code: VALID" -ForegroundColor Green
         } else {
             Write-Host "⚠️  Code: MAYBE INCOMPLETE" -ForegroundColor Yellow
