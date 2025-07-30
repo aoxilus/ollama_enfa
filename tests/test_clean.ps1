@@ -1,52 +1,63 @@
 #!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-    Fast test for Ollama models with GPU optimization
+    Clean test for Ollama models
 .DESCRIPTION
-    Optimized for quick responses with minimal prompts and low parameters
+    Enhanced prompt structure with balanced parameters for general questions
 .PARAMETER Model
     Ollama model to test (default: codellama:7b-code-q4_K_M)
 .PARAMETER Question
     Question to ask (default: "What is 2+2?")
 .PARAMETER Timeout
-    Timeout in seconds (default: 30)
+    Timeout in seconds (default: 60)
 .EXAMPLE
-    .\test_fast.ps1
-    .\test_fast.ps1 "codellama:7b-code-q4_K_M" "What is 3+3?"
-    .\test_fast.ps1 "llama2:7b" "What is 5+5?" 60
+    .\test_clean.ps1
+    .\test_clean.ps1 "codellama:7b-code-q4_K_M" "What is the capital of France?"
+    .\test_clean.ps1 "llama2:7b" "Explain photosynthesis" 120
 #>
 
 param(
     [string]$Model = "codellama:7b-code-q4_K_M",
     [string]$Question = "What is 2+2?",
-    [int]$Timeout = 30
+    [int]$Timeout = 60
 )
 
 # Import error handling
-. "$PSScriptRoot\ollama_errors.ps1"
+. "$PSScriptRoot\..\powershell\ollama_errors.ps1"
 
-function Test-Fast {
+function Test-Clean {
     param(
         [string]$Model,
         [string]$Question,
         [int]$Timeout
     )
     
-    Write-Host "🚀 Fast test - Model: $Model" -ForegroundColor Green
+    Write-Host "🧹 Clean test - Model: $Model" -ForegroundColor Green
     Write-Host "⏱️  Timeout: $Timeout seconds" -ForegroundColor Yellow
     Write-Host "📝 Question: $Question" -ForegroundColor Cyan
     Write-Host ""
     
     $url = "http://localhost:11434/api/generate"
-    $prompt = "Q: $Question`nA:" # Minimal prompt for speed
+    $enhancedPrompt = @"
+You are a helpful AI assistant. Answer this question clearly and accurately:
+
+Question: $Question
+
+Instructions:
+- Provide a clear, direct answer
+- If it's a math question, give the correct numerical result
+- Be concise and helpful
+
+Answer:
+"@
     
     $data = @{
         model = $Model
-        prompt = $prompt
+        prompt = $enhancedPrompt
         stream = $false
         options = @{
-            temperature = 0.1
-            num_predict = 20  # Very short response
+            temperature = 0.3
+            num_predict = 100
             top_k = 10
             top_p = 0.9
             repeat_penalty = 1.1
@@ -129,7 +140,7 @@ if (-not $healthOk) {
     exit 1
 }
 
-$success = Test-Fast -Model $Model -Question $Question -Timeout $Timeout
+$success = Test-Clean -Model $Model -Question $Question -Timeout $Timeout
 
 if ($success) {
     exit 0

@@ -23,7 +23,7 @@ param(
 )
 
 # Import error handling
-. "$PSScriptRoot\ollama_errors.ps1"
+. "$PSScriptRoot\..\powershell\ollama_errors.ps1"
 
 function Test-Code {
     param(

@@ -74,13 +74,13 @@ python python/ollama_simple_async.py "Write a Python function to solve matrices 
 ### Optimized PowerShell / PowerShell Optimizado
 ```powershell
 # Fast test (sub-second) / Test rápido (sub-segundo)
-.\powershell\test_fast.ps1 "What is 2+2?"
+.\tests\test_fast.ps1 "What is 2+2?"
 
 # Code generation / Generación de código
-.\powershell\test_code.ps1 "Write a Python function to calculate factorial"
+.\tests\test_code.ps1 "Write a Python function to calculate factorial"
 
 # General test / Test general
-.\powershell\test_clean.ps1 "What is the capital of France?"
+.\tests\test_clean.ps1 "What is the capital of France?"
 
 # Real-time monitoring / Monitoreo en tiempo real
 .\powershell\monitor_ollama.ps1 5
@@ -191,13 +191,13 @@ python tests/test_clean.py codellama:7b-code-q4_K_M "What is 2+2?"
 ### PowerShell Tests / Tests PowerShell
 ```powershell
 # Fast test / Test rápido
-.\powershell\test_fast.ps1 "What is 2+2?"
+.\tests\test_fast.ps1 "What is 2+2?"
 
 # Code test / Test de código
-.\powershell\test_code.ps1 "Write a Python function to calculate factorial"
+.\tests\test_code.ps1 "Write a Python function to calculate factorial"
 
 # Complete test / Test completo
-.\powershell\test_clean.ps1 "What is 2+2?"
+.\tests\test_clean.ps1 "What is 2+2?"
 ```
 
 ### Cache cleanup / Limpieza de cache
@@ -250,6 +250,9 @@ ollama_desktop_cursorAI/
 │   ├── test_code.py              # Code test (Python) / Test para código (Python)
 │   ├── test_clean.py             # Clean test (Python) / Test limpio (Python)
 │   ├── test_model.py             # Basic model test (Python) / Test básico de modelo (Python)
+│   ├── test_fast.ps1             # Fast optimized test (PowerShell) / Test rápido optimizado (PowerShell)
+│   ├── test_code.ps1             # Code test (PowerShell) / Test para código (PowerShell)
+│   ├── test_clean.ps1            # Clean test (PowerShell) / Test limpio (PowerShell)
 │   ├── test_model_clean.ps1      # Clean model test (PowerShell) / Test limpio de modelo (PowerShell)
 │   ├── test_model_curl.ps1       # Curl model test (PowerShell) / Test curl de modelo (PowerShell)
 │   ├── test_model_timeout.ps1    # Timeout model test (PowerShell) / Test timeout de modelo (PowerShell)
@@ -261,11 +264,11 @@ ollama_desktop_cursorAI/
 │   ├── ollama_simple_async_pure.ps1
 │   ├── ollama_cache.ps1
 │   ├── ollama_errors.ps1
-│   ├── test_fast.ps1              # New: Fast optimized test / Nuevo: Test rápido optimizado
-│   ├── test_code.ps1              # New: Code generation / Nuevo: Generación de código
-│   ├── test_clean.ps1             # New: Clean test / Nuevo: Test limpio
-│   ├── monitor_ollama.ps1         # New: Real-time monitoring / Nuevo: Monitoreo en tiempo real
-│   └── setup_ollama.ps1           # New: Automated setup / Nuevo: Configuración automatizada
+│   ├── monitor_ollama.ps1         # Real-time monitoring / Monitoreo en tiempo real
+│   ├── setup_ollama.ps1           # Automated setup / Configuración automatizada
+│   ├── benchmark_ollama.ps1       # Performance benchmarking / Benchmarking de rendimiento
+│   ├── optimize_ollama.ps1        # Automated optimization / Optimización automatizada
+│   └── ollama_watch.ps1           # Watch mode / Modo observación
 ├── logs/                         # Response logs / Logs de respuestas
 ├── cache/                        # Response cache / Cache de respuestas
 ├── ollama_simple_async.bat
