@@ -59,10 +59,10 @@ Este proyecto es una **integración inteligente** entre Ollama (IA local) y Curs
 ### 🚀 Fast Test (Recommended) / Test Rápido (Recomendado)
 ```bash
 # Simple questions - 669ms / Preguntas simples - 669ms
-python test_fast.py codellama:7b-code-q4_K_M "What is 2+2?"
+python tests/test_fast.py codellama:7b-code-q4_K_M "What is 2+2?"
 
 # Code - 3.4s / Código - 3.4s
-python test_code.py codellama:7b-code-q4_K_M "Write a Python function to calculate factorial"
+python tests/test_code.py codellama:7b-code-q4_K_M "Write a Python function to calculate factorial"
 ```
 
 ### Complete Python / Python Completo
@@ -112,7 +112,7 @@ python python/ollama_simple_async.py "Write a Python function to solve matrices 
 
 ```bash
 # Fast test from Cursor terminal / Test rápido desde terminal de Cursor
-python test_fast.py codellama:7b-code-q4_K_M "Analyze this React component and suggest improvements"
+python tests/test_fast.py codellama:7b-code-q4_K_M "Analyze this React component and suggest improvements"
 
 # Python from Cursor terminal / Python desde terminal de Cursor
 python python/ollama_simple_async.py "Analyze this React component and suggest improvements"
@@ -124,16 +124,16 @@ python python/ollama_simple_async.py "Analyze this React component and suggest i
 ### Usage examples in Cursor / Ejemplos de uso en Cursor
 ```bash
 # Code analysis / Análisis de código
-python test_fast.py codellama:7b-code-q4_K_M "Review this function for security issues"
+python tests/test_fast.py codellama:7b-code-q4_K_M "Review this function for security issues"
 
 # Code generation / Generación de código
-python test_code.py codellama:7b-code-q4_K_M "Create a responsive CSS grid layout"
+python tests/test_code.py codellama:7b-code-q4_K_M "Create a responsive CSS grid layout"
 
 # Debugging / Debugging
-python test_fast.py codellama:7b-code-q4_K_M "Why is this JavaScript function returning undefined?"
+python tests/test_fast.py codellama:7b-code-q4_K_M "Why is this JavaScript function returning undefined?"
 
 # Refactoring / Refactoring
-python test_code.py codellama:7b-code-q4_K_M "Refactor this Python class to use dependency injection"
+python tests/test_code.py codellama:7b-code-q4_K_M "Refactor this Python class to use dependency injection"
 ```
 
 ### Cursor Configuration / Configuración en Cursor
@@ -179,13 +179,13 @@ run_tests.bat
 ### Manual Tests / Tests Manuales
 ```bash
 # Fast test / Test rápido
-python test_fast.py codellama:7b-code-q4_K_M "What is 2+2?"
+python tests/test_fast.py codellama:7b-code-q4_K_M "What is 2+2?"
 
 # Code test / Test de código
-python test_code.py codellama:7b-code-q4_K_M "Write a Python function to calculate factorial"
+python tests/test_code.py codellama:7b-code-q4_K_M "Write a Python function to calculate factorial"
 
 # Complete test / Test completo
-python test_clean.py codellama:7b-code-q4_K_M "What is 2+2?"
+python tests/test_clean.py codellama:7b-code-q4_K_M "What is 2+2?"
 ```
 
 ### PowerShell Tests / Tests PowerShell
@@ -249,7 +249,13 @@ ollama_desktop_cursorAI/
 │   ├── test_fast.py              # Fast optimized test (Python) / Test rápido optimizado (Python)
 │   ├── test_code.py              # Code test (Python) / Test para código (Python)
 │   ├── test_clean.py             # Clean test (Python) / Test limpio (Python)
-│   └── run_tests.bat
+│   ├── test_model.py             # Basic model test (Python) / Test básico de modelo (Python)
+│   ├── test_model_clean.ps1      # Clean model test (PowerShell) / Test limpio de modelo (PowerShell)
+│   ├── test_model_curl.ps1       # Curl model test (PowerShell) / Test curl de modelo (PowerShell)
+│   ├── test_model_timeout.ps1    # Timeout model test (PowerShell) / Test timeout de modelo (PowerShell)
+│   ├── setup_ollama.py           # Automated setup (Python) / Configuración automatizada (Python)
+│   ├── run_tests.bat             # Run all tests / Ejecutar todos los tests
+│   └── clear_cache.bat           # Clear test cache / Limpiar cache de tests
 ├── powershell/
 │   ├── ollama_simple_async.ps1    # Updated: Optimized direct calls / Actualizado: Llamadas directas optimizadas
 │   ├── ollama_simple_async_pure.ps1
@@ -306,7 +312,7 @@ ollama ps
 ollama list
 
 # Verify connection / Verificar conexión
-python test_fast.py codellama:7b-code-q4_K_M "test"
+python tests/test_fast.py codellama:7b-code-q4_K_M "test"
 ```
 
 ---
