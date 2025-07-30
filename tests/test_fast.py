@@ -70,7 +70,7 @@ def test_fast(model="codellama:7b-code-q4_K_M", question="What is 2+2?", timeout
     print("🏁 Test completed")
 
 if __name__ == "__main__":
-    model = sys.argv[1] if len(sys.argv) > 1 else "codellama:7b-code-q4_K_M"
-    question = sys.argv[2] if len(sys.argv) > 2 else "What is 2+2?"
+    model = "codellama:7b-code-q4_K_M"
+    question = sys.argv[1] if len(sys.argv) > 1 else "What is 2+2?"
     
     test_fast(model, question) 

@@ -86,8 +86,15 @@ public:
             }
         }
         
-        // Preparar datos JSON
-        std::string jsonData = "{\"model\":\"" + model + "\",\"prompt\":\"" + question + "\",\"stream\":false,\"options\":{\"temperature\":0.7,\"num_predict\":100}}";
+        // Preparar datos JSON (escapar comillas)
+        std::string escapedQuestion = question;
+        size_t pos = 0;
+        while ((pos = escapedQuestion.find("\"", pos)) != std::string::npos) {
+            escapedQuestion.replace(pos, 1, "\\\"");
+            pos += 2;
+        }
+        
+        std::string jsonData = "{\"model\":\"" + model + "\",\"prompt\":\"" + escapedQuestion + "\",\"stream\":false,\"options\":{\"temperature\":0.7,\"num_predict\":100}}";
         
         auto start = std::chrono::high_resolution_clock::now();
         
@@ -123,7 +130,14 @@ public:
         std::cout << "🔄 Iniciando pregunta asíncrona..." << std::endl;
         
         return std::async(std::launch::async, [this, question]() {
-            std::string jsonData = "{\"model\":\"" + model + "\",\"prompt\":\"" + question + "\",\"stream\":false,\"options\":{\"temperature\":0.7,\"num_predict\":100}}";
+            std::string escapedQuestion = question;
+            size_t pos = 0;
+            while ((pos = escapedQuestion.find("\"", pos)) != std::string::npos) {
+                escapedQuestion.replace(pos, 1, "\\\"");
+                pos += 2;
+            }
+            
+            std::string jsonData = "{\"model\":\"" + model + "\",\"prompt\":\"" + escapedQuestion + "\",\"stream\":false,\"options\":{\"temperature\":0.7,\"num_predict\":100}}";
             return makeHttpRequest(endpoint + "/api/generate", jsonData);
         });
     }
@@ -150,7 +164,14 @@ public:
         }
         
         // Preparar datos para pregunta rápida
-        std::string jsonData = "{\"model\":\"" + model + "\",\"prompt\":\"" + question + "\",\"stream\":false,\"options\":{\"temperature\":0.1,\"num_predict\":20}}";
+        std::string escapedQuestion = question;
+        size_t pos = 0;
+        while ((pos = escapedQuestion.find("\"", pos)) != std::string::npos) {
+            escapedQuestion.replace(pos, 1, "\\\"");
+            pos += 2;
+        }
+        
+        std::string jsonData = "{\"model\":\"" + model + "\",\"prompt\":\"" + escapedQuestion + "\",\"stream\":false,\"options\":{\"temperature\":0.1,\"num_predict\":20}}";
         
         auto start = std::chrono::high_resolution_clock::now();
         

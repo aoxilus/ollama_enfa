@@ -68,7 +68,7 @@ def test_code(model="codellama:7b-code-q4_K_M", question="Write a Python functio
     print("🏁 Test completed")
 
 if __name__ == "__main__":
-    model = sys.argv[1] if len(sys.argv) > 1 else "codellama:7b-code-q4_K_M"
-    question = sys.argv[2] if len(sys.argv) > 2 else "Write a Python function to calculate factorial"
+    model = "codellama:7b-code-q4_K_M"
+    question = sys.argv[1] if len(sys.argv) > 1 else "Write a Python function to calculate factorial"
     
     test_code(model, question) 
