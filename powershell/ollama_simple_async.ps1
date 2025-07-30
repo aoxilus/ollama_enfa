@@ -24,6 +24,7 @@ param(
 
 # Configuration - Set to $true for sync mode, $false for async mode (recommended)
 $SYNC_MODE = $false
+$USE_DIRECT_OLLAMA = $true  # Use direct Ollama calls instead of Python
 
 # Configuration
 $PythonScript = "python/ollama_simple_async.py"
@@ -49,6 +50,52 @@ function Test-PythonAvailable {
     }
     catch {
         return $false, "Error checking Python: $($_.Exception.Message)"
+    }
+}
+
+function Invoke-OllamaDirect {
+    <#
+    .SYNOPSIS
+        Call Ollama directly with optimized parameters
+    #>
+    param(
+        [string]$Question,
+        [string]$Model = "codellama:7b-code-q4_K_M"
+    )
+    
+    $url = "http://localhost:11434/api/generate"
+    
+    # Optimized prompt and parameters
+    $prompt = "Q: $Question`nA:"
+    $data = @{
+        model = $Model
+        prompt = $prompt
+        stream = $false
+        options = @{
+            temperature = 0.1
+            num_predict = 20
+            top_k = 10
+            top_p = 0.9
+            repeat_penalty = 1.1
+        }
+    }
+    
+    try {
+        Write-Host "🤖 Calling Ollama with optimized parameters..." -ForegroundColor Yellow
+        $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+        
+        $response = Invoke-RestMethod -Uri $url -Method Post -Body ($data | ConvertTo-Json -Depth 10) -ContentType "application/json" -TimeoutSec 30
+        
+        $stopwatch.Stop()
+        $duration = $stopwatch.ElapsedMilliseconds
+        
+        Write-Host "✅ Response received in ${duration}ms" -ForegroundColor Green
+        return $true, $response.response
+    }
+    catch {
+        $stopwatch.Stop()
+        Add-Error -ErrorType "API" -Message "Request failed" -Details $_.Exception.Message
+        return $false, "Error calling Ollama: $($_.Exception.Message)"
     }
 }
 
@@ -136,7 +183,12 @@ Show-ErrorStats
 
 Write-Host ""
 Write-Host "Executing query with improvements..." -ForegroundColor Yellow
-$success, $result = Invoke-PythonOllama -Question $Question -Path $Path
+
+if ($USE_DIRECT_OLLAMA) {
+    $success, $result = Invoke-OllamaDirect -Question $Question
+} else {
+    $success, $result = Invoke-PythonOllama -Question $Question -Path $Path
+}
 
 if ($success) {
     Write-Host ""

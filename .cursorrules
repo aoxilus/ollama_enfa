@@ -1,16 +1,25 @@
-# Cursor AI Configuration for Ollama
-# Model: smollm2:135m
+# Cursor AI Configuration for Ollama - Optimized
+# Model: codellama:7b-code-q4_K_M (GPU Optimized)
 # Endpoint: http://localhost:11434
 
 # AI Provider Configuration
 AI_PROVIDER=ollama
 OLLAMA_ENDPOINT=http://localhost:11434
-OLLAMA_MODEL=smollm2:135m
+OLLAMA_MODEL=codellama:7b-code-q4_K_M
 
 # Custom AI Configuration
 CUSTOM_AI_ENDPOINT=http://localhost:11434/api/generate
-CUSTOM_AI_MODEL=smollm2:135m
+CUSTOM_AI_MODEL=codellama:7b-code-q4_K_M
 CUSTOM_AI_PROVIDER=ollama
+
+# Performance Optimization
+GPU_ACCELERATION=true
+TEMPERATURE_FAST=0.1
+TEMPERATURE_CODE=0.2
+TEMPERATURE_GENERAL=0.7
+TOKENS_FAST=20
+TOKENS_NORMAL=100
+TOKENS_CODE=200
 
 # Programming Style Rules
 - Use if / else if only
@@ -29,4 +38,12 @@ CUSTOM_AI_PROVIDER=ollama
 - No unnecessary comments
 - No lectures or opinions
 - Minimize dependencies
-- Flat code structure only 
+- Flat code structure only
+
+# Ollama Best Practices
+- Use test_fast.py for quick questions (669ms)
+- Use test_code.py for code generation (3.4s)
+- Validate responses automatically
+- Cache responses for repeated queries
+- Use GPU acceleration when available
+- Optimize prompts for specific use cases 
