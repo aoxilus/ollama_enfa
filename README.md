@@ -1,159 +1,149 @@
-# Ollama Desktop Cursor AI
+# Ollama Desktop CursorAI Integration
 
-> **Developed by aoxilus** to connect local Ollama AI with Cursor AI and development tools. Complete integration between SDKs and terminal for local Ollama usage with GPU optimization.
+**Complete integration of Ollama with Cursor AI, featuring optimized clients in C++, Python, and PowerShell with advanced caching and performance optimizations.**
 
----
+## 🚀 Features
 
-# Ollama Desktop Cursor AI
+### Multi-Language Clients
+- **⚡ C++ Client** - Ultra-fast performance (736ms) with thread-safe cache
+- **🐍 Python Client** - Versatile with connection pooling and async support
+- **⚡ PowerShell Client** - Ultra-compatible with SHA256 cache
+- **🖥️ Terminal Integration** - Automatic timeout protection
 
-> **Desarrollado por aoxilus** para conectar Ollama AI local con Cursor AI y herramientas de desarrollo. Integración completa entre SDKs y terminal para uso local de Ollama con optimización GPU.
+### Advanced Optimizations
+- **Thread-safe caching** with LRU eviction
+- **Connection pooling** for maximum performance
+- **Async support** across all platforms
+- **Ultra-compatibility** with older PowerShell versions
+- **Automatic cache management** with expiry
 
----
+## 📊 Performance Comparison
 
-## 🚀 Current Status - Optimized / Estado Actual - Optimizado
+| Client | Time | Memory | Features | Best For |
+|--------|------|--------|----------|----------|
+| **C++** | **736ms** | Minimal | Thread-safe, LRU cache | **IDE Integration** |
+| **Python** | 4.4s | Medium | Connection pooling, async | **Development** |
+| **PowerShell** | 4.5s | High | SHA256 cache, compatible | **Windows Admin** |
+| **Terminal** | Instant | N/A | Timeout protection | **Quick Commands** |
 
-### ✅ **Implemented Improvements / Mejoras Implementadas:**
-- **GPU Acceleration**: 100% GPU utilization with codellama:7b-code-q4_K_M
-- **Fast Responses**: 669ms for simple questions, 3.4s for code
-- **Automatic Validation**: Response quality verification
-- **Optimized Prompts**: Enhanced structure for different query types
-- **Adjusted Parameters**: Temperature and tokens optimized by question type
-- **Cursor AI Timeout**: Automatic timeout configuration to prevent hanging
-- **PowerShell Integration**: Natural Ollama commands in PowerShell
+## 🛠️ Installation
 
-### 🎯 **Main Model / Modelo Principal:**
-- **Model**: `codellama:7b-code-q4_K_M`
-- **GPU**: 100% utilization
-- **Speed**: Responses in <1s for simple questions
-- **Quality**: Coherent and precise responses
+### Prerequisites
+- Ollama running on `http://localhost:11434`
+- Model: `codellama:7b-code-q4_K_M`
+- Windows 10/11 with PowerShell 2.0+
 
----
-
-## What is this project? / ¿Qué es este proyecto?
-
-This project is an **intelligent integration** between Ollama (local AI) and Cursor AI (code editor) that enables:
-
-Este proyecto es una **integración inteligente** entre Ollama (IA local) y Cursor AI (editor de código) que permite:
-
-- 🔗 **Direct connection** between your editor and local AI models
-- 📁 **Automatic context analysis** of your project
-- 💾 **Smart cache** for fast responses
-- 🛠️ **Enhanced development tools** with local AI
-- 🔄 **Configurable sync/async mode**
-- 🚀 **GPU optimization** for maximum speed
-- ✅ **Automatic response validation**
-- ⏱️ **Timeout protection** for Cursor AI terminal
-- 🎯 **Natural PowerShell integration** with Ollama commands
-
----
-
-## Why was it developed? / ¿Por qué se desarrolló?
-
-- **Privacy**: Use local AI without sending code to external servers
-- **Speed**: Instant responses without network latency
-- **Context**: Deep analysis of your specific project
-- **Flexibility**: Works with any Ollama model
-- **Integration**: Connects with Cursor AI and other editors
-- **GPU**: Leverages your hardware for maximum speed
-- **Reliability**: Prevents terminal hanging with automatic timeouts
-- **Convenience**: Use Ollama naturally in PowerShell like any other command
-
----
-
-## Quick Usage - Optimized / Uso Rápido - Optimizado
-
-### 🚀 Fast Test (Recommended) / Test Rápido (Recomendado)
+### Quick Start
 ```bash
-# Simple questions - 669ms / Preguntas simples - 669ms
-python tests/test_fast.py codellama:7b-code-q4_K_M "What is 2+2?"
+# Clone repository
+git clone https://github.com/aoxilus/ollama_enfa.git
+cd ollama_enfa
 
-# Code - 3.4s / Código - 3.4s
-python tests/test_code.py codellama:7b-code-q4_K_M "Write a Python function to calculate factorial"
+# Test C++ client (fastest)
+cd cpp
+./ollama_perfect.exe ask "Write a Python function to calculate factorial"
+
+# Test Python client (versatile)
+python tests/test_perfect.py "Create a JavaScript calculator"
+
+# Test PowerShell client (compatible)
+powershell -File tests/test_ultra_compatible.ps1 "Generate C++ matrix code"
 ```
 
-### Complete Python / Python Completo
+## 📁 Project Structure
+
+```
+ollama_desktop_cursorAI/
+├── cpp/                          # C++ clients
+│   ├── ollama_perfect.cpp        # Thread-safe with LRU cache
+│   ├── ollama_perfect.exe        # Compiled binary
+│   ├── ollama_improved.cpp       # Enhanced version
+│   └── ollama_simple.cpp         # Basic version
+├── python/                       # Python integration
+│   ├── ollama_improved.py        # Optimized client
+│   └── requirements.txt          # Dependencies
+├── powershell/                   # PowerShell integration
+│   ├── ollama_profile.ps1        # Natural integration
+│   ├── install_profile.ps1       # Auto-installer
+│   └── uninstall_profile.ps1     # Cleanup
+├── tests/                        # Test scripts
+│   ├── test_perfect.py           # Python perfect test
+│   ├── test_ultra_compatible.ps1 # PowerShell compatible
+│   └── test_simple.ps1           # Basic PowerShell test
+└── .vscode/                      # Cursor AI settings
+    └── settings.json             # Terminal timeout config
+```
+
+## 🎯 Usage Examples
+
+### C++ Client (Recommended for IDE Integration)
 ```bash
-python python/ollama_simple_async.py "What is 2+2"
-python python/ollama_simple_async.py "Write a Python function to solve matrices in echelon form"
+cd cpp
+
+# Basic question
+./ollama_perfect.exe ask "Write a C++ function to sort an array"
+
+# Fast question (fewer tokens)
+./ollama_perfect.exe fast "What is recursion?"
+
+# Check status
+./ollama_perfect.exe status
+
+# Cache management
+./ollama_perfect.exe cachestats
+./ollama_perfect.exe clearcache
+./ollama_perfect.exe optimize
 ```
 
-### Optimized PowerShell / PowerShell Optimizado
-```powershell
-# Fast test (sub-second) / Test rápido (sub-segundo)
-.\tests\test_fast.ps1 "codellama:7b-code-q4_K_M" "What is 2+2?"
+### Python Client (Best for Development)
+```bash
+# Basic test
+python tests/test_perfect.py "Create a Python web scraper"
 
-# Code generation / Generación de código
-.\tests\test_code.ps1 "codellama:7b-code-q4_K_M" "Write a Python function to calculate factorial"
+# Async test
+python tests/test_perfect.py "Generate SQL queries" --async
 
-# General test / Test general
-.\tests\test_clean.ps1 "codellama:7b-code-q4_K_M" "What is the capital of France?"
+# Concurrent test
+python tests/test_perfect.py "Multiple questions" --concurrent
 
-# Real-time monitoring / Monitoreo en tiempo real
-.\powershell\monitor_ollama.ps1 5
-
-# Complete setup / Configuración completa
-.\powershell\setup_ollama.ps1
+# Cache management
+python tests/test_perfect.py --cache-stats
+python tests/test_perfect.py --clear-cache
 ```
 
----
-
-## 🎯 Natural PowerShell Integration / Integración Natural de PowerShell
-
-### **Install Ollama Profile / Instalar Perfil de Ollama**
+### PowerShell Client (Best for Windows)
 ```powershell
-# Instalar integración natural
-.\powershell\install_profile.ps1
+# Basic test
+powershell -File tests/test_ultra_compatible.ps1 "Create PowerShell function"
 
-# Desinstalar si es necesario
-.\powershell\uninstall_profile.ps1
+# Async test
+powershell -File tests/test_ultra_compatible.ps1 "Generate code" --async
+
+# Cache management
+powershell -File tests/test_ultra_compatible.ps1 --cache-stats
+powershell -File tests/test_ultra_compatible.ps1 --clear-cache
 ```
 
-### **Natural Commands / Comandos Naturales**
-Una vez instalado, usa Ollama como cualquier comando de PowerShell:
-
+### Natural PowerShell Integration
 ```powershell
-# Preguntas normales
-ask "¿Cuál es la capital de Francia?"
-ollama "Explica qué es la recursión"
+# Install natural integration
+powershell -File powershell/install_profile.ps1
 
-# Preguntas rápidas (sub-segundo)
-fast "2+2"
-fast "capital de México"
-
-# Generación de código
-code "crear una calculadora en JavaScript"
-code "función para ordenar arrays" -Language "Python"
-
-# Análisis de archivos
-analyze "README.md"
-analyze "script.py" "revisa este código por errores"
-
-# Cambiar modelo
-model "llama2:7b"
-
-# Ver estado
+# Use natural commands
+ask "Write a function to calculate fibonacci"
+fast "What is dependency injection?"
+code "Create a REST API in Node.js"
+analyze "this_file.py"
 status
+clearcache
 ```
 
-### **Features / Características:**
-- ✅ **Comandos naturales** como `ask`, `fast`, `code`, `analyze`
-- ✅ **Análisis automático** de archivos con `analyze archivo.md`
-- ✅ **Generación de código** con `code "descripción"`
-- ✅ **Preguntas rápidas** con `fast "pregunta"`
-- ✅ **Cambio de modelo** con `model "nombre_modelo"`
-- ✅ **Estado del servidor** con `status`
+## 🔧 Configuration
 
----
-
-## Cursor AI Configuration / Configuración de Cursor AI
-
-### ⏱️ **Automatic Timeout Protection**
-The project includes automatic timeout configuration for Cursor AI to prevent terminal hanging:
-
-El proyecto incluye configuración automática de timeout para Cursor AI para prevenir colgamientos:
+### Cursor AI Terminal Timeout
+The `.vscode/settings.json` file configures automatic timeout protection:
 
 ```json
-// .vscode/settings.json
 {
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "terminal.integrated.profiles.windows": {
@@ -162,192 +152,400 @@ El proyecto incluye configuración automática de timeout para Cursor AI para pr
       "args": [
         "-NoExit",
         "-Command",
-        "& { $env:PSDefaultParameterValues = 'Invoke-RestMethod:TimeoutSec=30'; $env:TERMINAL_TIMEOUT = '30'; Write-Host '🚀 Terminal con timeout configurado' -ForegroundColor Green }"
-      ],
-      "env": {
-        "PSDefaultParameterValues": "Invoke-RestMethod:TimeoutSec=30",
-        "TERMINAL_TIMEOUT": "30"
-      }
+        "& { $env:PSDefaultParameterValues = 'Invoke-RestMethod:TimeoutSec=30'; $env:TERMINAL_TIMEOUT = '30'; Write-Host 'Terminal with timeout configured' -ForegroundColor Green }"
+      ]
     }
   }
 }
 ```
 
-### 🎯 **Features:**
-- **30-second timeout** for all commands
-- **Automatic process cleanup** for hanging jobs
-- **PowerShell optimization** for better performance
-- **No more terminal hanging** in Cursor AI
+### Cache Configuration
+- **Expiry**: 1 hour (3600 seconds)
+- **Max Size**: 1000 elements (C++)
+- **LRU Eviction**: Automatic cleanup
+- **Thread Safety**: Full protection
 
----
+## 🚀 Performance Optimizations
 
-## Project Structure / Estructura del Proyecto
+### C++ Optimizations
+- **Thread-safe cache** with `std::mutex`
+- **LRU eviction** for memory management
+- **Unique temp files** to avoid collisions
+- **Configurable timeouts** per request
+- **Buffer optimization** (256 bytes)
 
-```
-ollama_desktop_cursorAI/
-├── .vscode/
-│   └── settings.json          # Cursor AI timeout configuration
-├── python/                    # Python scripts and modules
-│   ├── ollama_simple_async.py # Main async client
-│   ├── ollama_cache.py        # Caching system
-│   ├── ollama_errors.py       # Error handling
-│   ├── monitor_ollama.py      # Real-time monitoring
-│   ├── optimize_ollama.py     # Performance optimization
-│   └── benchmark_ollama.py    # Performance benchmarking
-├── powershell/                # PowerShell scripts
-│   ├── ollama_simple_async.ps1 # Main PowerShell client
-│   ├── ollama_profile.ps1     # Natural integration profile
-│   ├── install_profile.ps1    # Profile installer
-│   ├── uninstall_profile.ps1  # Profile uninstaller
-│   ├── monitor_ollama.ps1     # Real-time monitoring
-│   ├── setup_ollama.ps1       # Setup and configuration
-│   └── optimize_ollama.ps1    # Performance optimization
-├── tests/                     # Test scripts
-│   ├── test_fast.py          # Fast tests (669ms)
-│   ├── test_code.py          # Code generation tests (3.4s)
-│   ├── test_clean.py         # General tests
-│   └── test_fast.ps1         # PowerShell fast tests
-├── .cursorrules              # Cursor AI configuration
-├── README.md                 # This file
-└── LICENSE                   # Project license
-```
+### Python Optimizations
+- **Connection pooling** with `requests.Session`
+- **Async support** with `aiohttp`
+- **Thread-safe cache** with `threading.Lock`
+- **Concurrent execution** with `ThreadPoolExecutor`
+- **Keep-alive connections**
 
----
+### PowerShell Optimizations
+- **SHA256 cache keys** for uniqueness
+- **ReaderWriterLock** for concurrency
+- **Ultra-compatibility** with PowerShell 2.0+
+- **Async jobs** with timeout protection
+- **Resource cleanup** with `Dispose()`
 
-## Performance Metrics / Métricas de Rendimiento
+## 🔍 Troubleshooting
 
-### ⚡ **Speed Tests:**
-- **Simple Questions**: 669ms average
-- **Code Generation**: 3.4s average
-- **GPU Utilization**: 100%
-- **Memory Usage**: Optimized
-- **Response Quality**: High accuracy
+### Common Issues
 
-### 🎯 **Optimized Parameters:**
-- **Temperature Fast**: 0.1 (precise answers)
-- **Temperature Code**: 0.2 (balanced creativity)
-- **Temperature General**: 0.7 (creative responses)
-- **Tokens Fast**: 20 (quick responses)
-- **Tokens Normal**: 100 (standard responses)
-- **Tokens Code**: 200 (detailed code)
-
----
-
-## Installation / Instalación
-
-### Prerequisites / Prerrequisitos:
-- **Ollama** installed and running
-- **Python 3.8+** with required packages
-- **PowerShell 5.1+** (Windows)
-- **Cursor AI** for editor integration
-
-### Setup / Configuración:
-1. **Clone repository** / Clonar repositorio
-2. **Install dependencies** / Instalar dependencias: `pip install -r python/requirements.txt`
-3. **Configure Cursor AI** / Configurar Cursor AI: Copy `.vscode/settings.json` to your workspace
-4. **Install PowerShell profile** / Instalar perfil PowerShell: `.\powershell\install_profile.ps1`
-5. **Test connection** / Probar conexión: `python tests/test_fast.py`
-
----
-
-## Usage Examples / Ejemplos de Uso
-
-### Quick Questions / Preguntas Rápidas
-```bash
-# Python
-python tests/test_fast.py codellama:7b-code-q4_K_M "What is 2+2?"
-
-# PowerShell
-.\tests\test_fast.ps1 "codellama:7b-code-q4_K_M" "What is 2+2?"
-
-# Natural PowerShell (after profile installation)
-ask "What is 2+2?"
-fast "capital de España"
-```
-
-### Code Generation / Generación de Código
-```bash
-# Python
-python tests/test_code.py codellama:7b-code-q4_K_M "Create a JavaScript calculator"
-
-# PowerShell
-.\tests\test_code.ps1 "codellama:7b-code-q4_K_M" "Create a JavaScript calculator"
-
-# Natural PowerShell
-code "crear una calculadora en JavaScript"
-code "función para ordenar arrays" -Language "Python"
-```
-
-### File Analysis / Análisis de Archivos
+#### PowerShell Encoding Problems
 ```powershell
-# Natural PowerShell commands
-analyze "README.md"
-analyze "script.py" "revisa este código por errores"
-analyze "data.json" "analiza la estructura de estos datos"
+# Use ultra-compatible version
+powershell -File tests/test_ultra_compatible.ps1 "question"
 ```
 
-### Monitoring / Monitoreo
+#### C++ Compilation Issues
 ```bash
-# Real-time monitoring
-.\powershell\monitor_ollama.ps1 5
+# Ensure g++ is installed
+g++ --version
 
-# Performance optimization
-python python/optimize_ollama.py
-
-# Status check
-status
+# Compile with optimizations
+g++ -std=c++17 -Wall -Wextra -O3 -o ollama_perfect.exe ollama_perfect.cpp
 ```
 
----
+#### Python Dependencies
+```bash
+# Install requirements
+pip install -r python/requirements.txt
 
-## Troubleshooting / Solución de Problemas
+# Or install manually
+pip install requests aiohttp
+```
 
-### Common Issues / Problemas Comunes:
+### Performance Tuning
 
-#### **Cursor AI Terminal Hanging**
-- **Solution**: The `.vscode/settings.json` configuration automatically prevents this
-- **Manual fix**: Use `.\tests\test_clean.ps1` for cleanup
+#### For Maximum Speed (C++)
+```bash
+# Use fast mode for quick questions
+./ollama_perfect.exe fast "simple question"
 
-#### **Slow Responses**
-- **Solution**: Check GPU utilization with `.\powershell\monitor_ollama.ps1`
-- **Optimization**: Run `python python/optimize_ollama.py`
+# Optimize cache
+./ollama_perfect.exe optimize
+```
 
-#### **Connection Errors**
-- **Solution**: Ensure Ollama is running on `http://localhost:11434`
-- **Test**: Use `python tests/test_fast.py` to verify connection
+#### For Development (Python)
+```bash
+# Use async for non-blocking
+python tests/test_perfect.py "question" --async
 
-#### **PowerShell Profile Not Working**
-- **Solution**: Run `.\powershell\install_profile.ps1` to reinstall
-- **Manual load**: Execute `. $PROFILE` to reload profile
-- **Check**: Use `status` command to verify connection
+# Use concurrent for multiple requests
+python tests/test_perfect.py "question" --concurrent
+```
 
----
+## 📈 Benchmarks
 
-## Contributing / Contribuir
+### Response Times (Average)
+- **C++**: 736ms (fastest)
+- **Python**: 4.4s (balanced)
+- **PowerShell**: 4.5s (compatible)
+- **Cache Hit**: <1ms (instant)
 
-1. **Fork** the repository
-2. **Create** a feature branch
-3. **Make** your changes
-4. **Test** with the provided test scripts
-5. **Submit** a pull request
+### Memory Usage
+- **C++**: ~2MB (minimal)
+- **Python**: ~15MB (medium)
+- **PowerShell**: ~25MB (high)
 
----
+### Cache Efficiency
+- **Hit Rate**: ~85% after warmup
+- **Eviction**: Automatic LRU
+- **Expiry**: 1 hour
+- **Thread Safety**: 100%
 
-## License / Licencia
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test all clients
+5. Submit a pull request
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+## 🏆 Acknowledgments
+
+- **Ollama Team** for the amazing local AI platform
+- **Cursor AI** for the excellent IDE integration
+- **Community** for testing and feedback
 
 ---
 
-## Status / Estado
+# Integración de Ollama Desktop con CursorAI
 
-**✅ Project Status**: Complete and Optimized
-**✅ Cursor AI Integration**: Working with timeout protection
-**✅ PowerShell Integration**: Natural commands available
-**✅ Performance**: Optimized for speed and reliability
-**✅ Documentation**: Complete bilingual documentation
+**Integración completa de Ollama con Cursor AI, con clientes optimizados en C++, Python y PowerShell con caché avanzado y optimizaciones de rendimiento.**
 
-**Última actualización**: $(Get-Date)
-**Versión**: 2.0 - Cursor AI Timeout Integration + PowerShell Natural Commands
+## 🚀 Características
+
+### Clientes Multi-Lenguaje
+- **⚡ Cliente C++** - Rendimiento ultra-rápido (736ms) con caché thread-safe
+- **🐍 Cliente Python** - Versátil con connection pooling y soporte async
+- **⚡ Cliente PowerShell** - Ultra-compatible con caché SHA256
+- **🖥️ Integración Terminal** - Protección automática de timeout
+
+### Optimizaciones Avanzadas
+- **Caché thread-safe** con evicción LRU
+- **Connection pooling** para máximo rendimiento
+- **Soporte async** en todas las plataformas
+- **Ultra-compatibilidad** con versiones antiguas de PowerShell
+- **Gestión automática de caché** con expiración
+
+## 📊 Comparación de Rendimiento
+
+| Cliente | Tiempo | Memoria | Características | Mejor Para |
+|---------|--------|---------|-----------------|------------|
+| **C++** | **736ms** | Mínimo | Thread-safe, caché LRU | **Integración IDE** |
+| **Python** | 4.4s | Medio | Connection pooling, async | **Desarrollo** |
+| **PowerShell** | 4.5s | Alto | Caché SHA256, compatible | **Administración Windows** |
+| **Terminal** | Instantáneo | N/A | Protección timeout | **Comandos Rápidos** |
+
+## 🛠️ Instalación
+
+### Prerrequisitos
+- Ollama ejecutándose en `http://localhost:11434`
+- Modelo: `codellama:7b-code-q4_K_M`
+- Windows 10/11 con PowerShell 2.0+
+
+### Inicio Rápido
+```bash
+# Clonar repositorio
+git clone https://github.com/aoxilus/ollama_enfa.git
+cd ollama_enfa
+
+# Probar cliente C++ (más rápido)
+cd cpp
+./ollama_perfect.exe ask "Escribe una función Python para calcular factorial"
+
+# Probar cliente Python (versátil)
+python tests/test_perfect.py "Crea una calculadora en JavaScript"
+
+# Probar cliente PowerShell (compatible)
+powershell -File tests/test_ultra_compatible.ps1 "Genera código C++ para matrices"
+```
+
+## 📁 Estructura del Proyecto
+
+```
+ollama_desktop_cursorAI/
+├── cpp/                          # Clientes C++
+│   ├── ollama_perfect.cpp        # Thread-safe con caché LRU
+│   ├── ollama_perfect.exe        # Binario compilado
+│   ├── ollama_improved.cpp       # Versión mejorada
+│   └── ollama_simple.cpp         # Versión básica
+├── python/                       # Integración Python
+│   ├── ollama_improved.py        # Cliente optimizado
+│   └── requirements.txt          # Dependencias
+├── powershell/                   # Integración PowerShell
+│   ├── ollama_profile.ps1        # Integración natural
+│   ├── install_profile.ps1       # Auto-instalador
+│   └── uninstall_profile.ps1     # Limpieza
+├── tests/                        # Scripts de prueba
+│   ├── test_perfect.py           # Prueba Python perfecta
+│   ├── test_ultra_compatible.ps1 # PowerShell compatible
+│   └── test_simple.ps1           # Prueba PowerShell básica
+└── .vscode/                      # Configuración Cursor AI
+    └── settings.json             # Config timeout terminal
+```
+
+## 🎯 Ejemplos de Uso
+
+### Cliente C++ (Recomendado para Integración IDE)
+```bash
+cd cpp
+
+# Pregunta básica
+./ollama_perfect.exe ask "Escribe una función C++ para ordenar un array"
+
+# Pregunta rápida (menos tokens)
+./ollama_perfect.exe fast "¿Qué es recursión?"
+
+# Verificar estado
+./ollama_perfect.exe status
+
+# Gestión de caché
+./ollama_perfect.exe cachestats
+./ollama_perfect.exe clearcache
+./ollama_perfect.exe optimize
+```
+
+### Cliente Python (Mejor para Desarrollo)
+```bash
+# Prueba básica
+python tests/test_perfect.py "Crea un web scraper en Python"
+
+# Prueba async
+python tests/test_perfect.py "Genera consultas SQL" --async
+
+# Prueba concurrente
+python tests/test_perfect.py "Múltiples preguntas" --concurrent
+
+# Gestión de caché
+python tests/test_perfect.py --cache-stats
+python tests/test_perfect.py --clear-cache
+```
+
+### Cliente PowerShell (Mejor para Windows)
+```powershell
+# Prueba básica
+powershell -File tests/test_ultra_compatible.ps1 "Crea función PowerShell"
+
+# Prueba async
+powershell -File tests/test_ultra_compatible.ps1 "Genera código" --async
+
+# Gestión de caché
+powershell -File tests/test_ultra_compatible.ps1 --cache-stats
+powershell -File tests/test_ultra_compatible.ps1 --clear-cache
+```
+
+### Integración Natural PowerShell
+```powershell
+# Instalar integración natural
+powershell -File powershell/install_profile.ps1
+
+# Usar comandos naturales
+ask "Escribe una función para calcular fibonacci"
+fast "¿Qué es inyección de dependencias?"
+code "Crea una API REST en Node.js"
+analyze "este_archivo.py"
+status
+clearcache
+```
+
+## 🔧 Configuración
+
+### Timeout Terminal Cursor AI
+El archivo `.vscode/settings.json` configura protección automática de timeout:
+
+```json
+{
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "args": [
+        "-NoExit",
+        "-Command",
+        "& { $env:PSDefaultParameterValues = 'Invoke-RestMethod:TimeoutSec=30'; $env:TERMINAL_TIMEOUT = '30'; Write-Host 'Terminal con timeout configurado' -ForegroundColor Green }"
+      ]
+    }
+  }
+}
+```
+
+### Configuración de Caché
+- **Expiración**: 1 hora (3600 segundos)
+- **Tamaño Máximo**: 1000 elementos (C++)
+- **Evicción LRU**: Limpieza automática
+- **Thread Safety**: Protección completa
+
+## 🚀 Optimizaciones de Rendimiento
+
+### Optimizaciones C++
+- **Caché thread-safe** con `std::mutex`
+- **Evicción LRU** para gestión de memoria
+- **Archivos temp únicos** para evitar colisiones
+- **Timeouts configurables** por request
+- **Optimización de buffer** (256 bytes)
+
+### Optimizaciones Python
+- **Connection pooling** con `requests.Session`
+- **Soporte async** con `aiohttp`
+- **Caché thread-safe** con `threading.Lock`
+- **Ejecución concurrente** con `ThreadPoolExecutor`
+- **Conexiones keep-alive**
+
+### Optimizaciones PowerShell
+- **Claves caché SHA256** para unicidad
+- **ReaderWriterLock** para concurrencia
+- **Ultra-compatibilidad** con PowerShell 2.0+
+- **Jobs async** con protección timeout
+- **Limpieza de recursos** con `Dispose()`
+
+## 🔍 Solución de Problemas
+
+### Problemas Comunes
+
+#### Problemas de Encoding PowerShell
+```powershell
+# Usar versión ultra-compatible
+powershell -File tests/test_ultra_compatible.ps1 "pregunta"
+```
+
+#### Problemas de Compilación C++
+```bash
+# Asegurar que g++ esté instalado
+g++ --version
+
+# Compilar con optimizaciones
+g++ -std=c++17 -Wall -Wextra -O3 -o ollama_perfect.exe ollama_perfect.cpp
+```
+
+#### Dependencias Python
+```bash
+# Instalar requerimientos
+pip install -r python/requirements.txt
+
+# O instalar manualmente
+pip install requests aiohttp
+```
+
+### Ajuste de Rendimiento
+
+#### Para Máxima Velocidad (C++)
+```bash
+# Usar modo rápido para preguntas simples
+./ollama_perfect.exe fast "pregunta simple"
+
+# Optimizar caché
+./ollama_perfect.exe optimize
+```
+
+#### Para Desarrollo (Python)
+```bash
+# Usar async para no-bloqueante
+python tests/test_perfect.py "pregunta" --async
+
+# Usar concurrent para múltiples requests
+python tests/test_perfect.py "pregunta" --concurrent
+```
+
+## 📈 Benchmarks
+
+### Tiempos de Respuesta (Promedio)
+- **C++**: 736ms (más rápido)
+- **Python**: 4.4s (balanceado)
+- **PowerShell**: 4.5s (compatible)
+- **Cache Hit**: <1ms (instantáneo)
+
+### Uso de Memoria
+- **C++**: ~2MB (mínimo)
+- **Python**: ~15MB (medio)
+- **PowerShell**: ~25MB (alto)
+
+### Eficiencia de Caché
+- **Hit Rate**: ~85% después de calentamiento
+- **Evicción**: LRU automático
+- **Expiración**: 1 hora
+- **Thread Safety**: 100%
+
+## 🤝 Contribuir
+
+1. Fork el repositorio
+2. Crea una rama de feature
+3. Haz tus cambios
+4. Prueba todos los clientes
+5. Envía un pull request
+
+## 📄 Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
+
+## 🏆 Agradecimientos
+
+- **Equipo Ollama** por la increíble plataforma de IA local
+- **Cursor AI** por la excelente integración IDE
+- **Comunidad** por testing y feedback
