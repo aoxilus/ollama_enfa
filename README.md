@@ -19,6 +19,7 @@
 - **Optimized Prompts**: Enhanced structure for different query types
 - **Adjusted Parameters**: Temperature and tokens optimized by question type
 - **Cursor AI Timeout**: Automatic timeout configuration to prevent hanging
+- **PowerShell Integration**: Natural Ollama commands in PowerShell
 
 ### 🎯 **Main Model / Modelo Principal:**
 - **Model**: `codellama:7b-code-q4_K_M`
@@ -42,6 +43,7 @@ Este proyecto es una **integración inteligente** entre Ollama (IA local) y Curs
 - 🚀 **GPU optimization** for maximum speed
 - ✅ **Automatic response validation**
 - ⏱️ **Timeout protection** for Cursor AI terminal
+- 🎯 **Natural PowerShell integration** with Ollama commands
 
 ---
 
@@ -54,6 +56,7 @@ Este proyecto es una **integración inteligente** entre Ollama (IA local) y Curs
 - **Integration**: Connects with Cursor AI and other editors
 - **GPU**: Leverages your hardware for maximum speed
 - **Reliability**: Prevents terminal hanging with automatic timeouts
+- **Convenience**: Use Ollama naturally in PowerShell like any other command
 
 ---
 
@@ -91,6 +94,54 @@ python python/ollama_simple_async.py "Write a Python function to solve matrices 
 # Complete setup / Configuración completa
 .\powershell\setup_ollama.ps1
 ```
+
+---
+
+## 🎯 Natural PowerShell Integration / Integración Natural de PowerShell
+
+### **Install Ollama Profile / Instalar Perfil de Ollama**
+```powershell
+# Instalar integración natural
+.\powershell\install_profile.ps1
+
+# Desinstalar si es necesario
+.\powershell\uninstall_profile.ps1
+```
+
+### **Natural Commands / Comandos Naturales**
+Una vez instalado, usa Ollama como cualquier comando de PowerShell:
+
+```powershell
+# Preguntas normales
+ask "¿Cuál es la capital de Francia?"
+ollama "Explica qué es la recursión"
+
+# Preguntas rápidas (sub-segundo)
+fast "2+2"
+fast "capital de México"
+
+# Generación de código
+code "crear una calculadora en JavaScript"
+code "función para ordenar arrays" -Language "Python"
+
+# Análisis de archivos
+analyze "README.md"
+analyze "script.py" "revisa este código por errores"
+
+# Cambiar modelo
+model "llama2:7b"
+
+# Ver estado
+status
+```
+
+### **Features / Características:**
+- ✅ **Comandos naturales** como `ask`, `fast`, `code`, `analyze`
+- ✅ **Análisis automático** de archivos con `analyze archivo.md`
+- ✅ **Generación de código** con `code "descripción"`
+- ✅ **Preguntas rápidas** con `fast "pregunta"`
+- ✅ **Cambio de modelo** con `model "nombre_modelo"`
+- ✅ **Estado del servidor** con `status`
 
 ---
 
@@ -145,6 +196,9 @@ ollama_desktop_cursorAI/
 │   └── benchmark_ollama.py    # Performance benchmarking
 ├── powershell/                # PowerShell scripts
 │   ├── ollama_simple_async.ps1 # Main PowerShell client
+│   ├── ollama_profile.ps1     # Natural integration profile
+│   ├── install_profile.ps1    # Profile installer
+│   ├── uninstall_profile.ps1  # Profile uninstaller
 │   ├── monitor_ollama.ps1     # Real-time monitoring
 │   ├── setup_ollama.ps1       # Setup and configuration
 │   └── optimize_ollama.ps1    # Performance optimization
@@ -191,7 +245,8 @@ ollama_desktop_cursorAI/
 1. **Clone repository** / Clonar repositorio
 2. **Install dependencies** / Instalar dependencias: `pip install -r python/requirements.txt`
 3. **Configure Cursor AI** / Configurar Cursor AI: Copy `.vscode/settings.json` to your workspace
-4. **Test connection** / Probar conexión: `python tests/test_fast.py`
+4. **Install PowerShell profile** / Instalar perfil PowerShell: `.\powershell\install_profile.ps1`
+5. **Test connection** / Probar conexión: `python tests/test_fast.py`
 
 ---
 
@@ -204,6 +259,10 @@ python tests/test_fast.py codellama:7b-code-q4_K_M "What is 2+2?"
 
 # PowerShell
 .\tests\test_fast.ps1 "codellama:7b-code-q4_K_M" "What is 2+2?"
+
+# Natural PowerShell (after profile installation)
+ask "What is 2+2?"
+fast "capital de España"
 ```
 
 ### Code Generation / Generación de Código
@@ -213,6 +272,18 @@ python tests/test_code.py codellama:7b-code-q4_K_M "Create a JavaScript calculat
 
 # PowerShell
 .\tests\test_code.ps1 "codellama:7b-code-q4_K_M" "Create a JavaScript calculator"
+
+# Natural PowerShell
+code "crear una calculadora en JavaScript"
+code "función para ordenar arrays" -Language "Python"
+```
+
+### File Analysis / Análisis de Archivos
+```powershell
+# Natural PowerShell commands
+analyze "README.md"
+analyze "script.py" "revisa este código por errores"
+analyze "data.json" "analiza la estructura de estos datos"
 ```
 
 ### Monitoring / Monitoreo
@@ -222,6 +293,9 @@ python tests/test_code.py codellama:7b-code-q4_K_M "Create a JavaScript calculat
 
 # Performance optimization
 python python/optimize_ollama.py
+
+# Status check
+status
 ```
 
 ---
@@ -241,6 +315,11 @@ python python/optimize_ollama.py
 #### **Connection Errors**
 - **Solution**: Ensure Ollama is running on `http://localhost:11434`
 - **Test**: Use `python tests/test_fast.py` to verify connection
+
+#### **PowerShell Profile Not Working**
+- **Solution**: Run `.\powershell\install_profile.ps1` to reinstall
+- **Manual load**: Execute `. $PROFILE` to reload profile
+- **Check**: Use `status` command to verify connection
 
 ---
 
@@ -266,8 +345,9 @@ Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](L
 
 **✅ Project Status**: Complete and Optimized
 **✅ Cursor AI Integration**: Working with timeout protection
+**✅ PowerShell Integration**: Natural commands available
 **✅ Performance**: Optimized for speed and reliability
 **✅ Documentation**: Complete bilingual documentation
 
 **Última actualización**: $(Get-Date)
-**Versión**: 2.0 - Cursor AI Timeout Integration
+**Versión**: 2.0 - Cursor AI Timeout Integration + PowerShell Natural Commands
