@@ -1,16 +1,30 @@
-# Cursor AI Configuration for Ollama - Optimized
-# Model: codellama:7b-code-q4_K_M (GPU Optimized)
-# Endpoint: http://localhost:11434
+# Cursor Butler - Local AI for Cursor (CLI)
+# Backend: llama.cpp (llama-server) OpenAI-compatible API
+# Endpoint: http://127.0.0.1:8080
+
+# Repo contract (must match docs/README.md + docs/README.es.md + docs/AGENTS.md; do not contradict)
+# - Docs: docs/README.md; docs/README.es.md; docs/DMAIC.md; AI orchestration: docs/AGENTS.md.
+# - Same facts, two README files — no second full doc inside README.md.
+# - Official verify: verify.ps1 → ping (test/ping_model.ps1) then test/run_3_programs_and_evaluate.ps1; use -SkipPing to skip ping.
+# - test/ = all test assets; Butler smoke/eval at test/*.ps1 except test/legacy/ (historical only).
+# - Local parse (no server): scripts/ci_parse_pwsh.ps1 (CI runs the same).
+# - Unit gate (no server): scripts/run_unit_tests.ps1 (Pester + stub client; must stay green in CI).
+# - Canonical chat binary: cpp/ollama_client.cpp; PS bridge: powershell/ButlerCppBridge.ps1; override BUTLER_CPP_CLIENT.
+# - PowerShell integration: powershell/butler_profile.ps1; setup: powershell/setup_butler.ps1.
+# - Do not treat Ollama as the default backend in new docs; Butler is llama-server + GGUF.
 
 # AI Provider Configuration
-AI_PROVIDER=ollama
-OLLAMA_ENDPOINT=http://localhost:11434
-OLLAMA_MODEL=codellama:7b-code-q4_K_M
+AI_PROVIDER=butler
+BUTLER_ENDPOINT=http://127.0.0.1:8080
+BUTLER_MODEL=local
+BUTLER_TIMEOUT_SEC=30
+
+# Timers (use local AI responsibly): si se cuelga ya bye. See https://learn.microsoft.com/en-us/windows/ai/overview
 
 # Custom AI Configuration
-CUSTOM_AI_ENDPOINT=http://localhost:11434/api/generate
-CUSTOM_AI_MODEL=codellama:7b-code-q4_K_M
-CUSTOM_AI_PROVIDER=ollama
+CUSTOM_AI_ENDPOINT=http://127.0.0.1:8080/v1/chat/completions
+CUSTOM_AI_MODEL=local
+CUSTOM_AI_PROVIDER=butler
 
 # Performance Optimization
 GPU_ACCELERATION=true
@@ -22,28 +36,22 @@ TOKENS_NORMAL=100
 TOKENS_CODE=200
 
 # Programming Style Rules
-- Use if / else if only
-- No else blocks
-- No switch / case / when
-- No try / catch
-- Validate with if before parsing or accessing
-- Use for loop when count or items are known
-- Use while loop when condition is unknown
-- Use early return to avoid nesting
+- Prefer clear control flow; allow `else` when it improves readability.
+- Validate inputs before parsing or accessing.
+- Use `try/catch` around network/file operations; do not swallow errors (rethrow or return a clear failure).
 - No verbose answers
-- Use short variable names
-- Use short function parameters
+- Use readable variable and parameter names (brevity is ok, clarity first).
 - No placeholder code
-- Do not explain, just make it work
 - No unnecessary comments
 - No lectures or opinions
 - Minimize dependencies
 - Flat code structure only
 
-# Ollama Best Practices
-- Use test_fast.py for quick questions (669ms)
-- Use test_code.py for code generation (3.4s)
+# Butler Best Practices
+- Run `verify.ps1` (or `test/run_3_programs_and_evaluate.ps1` with same args) for green/red official check
+- Use `test/ping_model.ps1` to verify `llama-server` readiness on `http://127.0.0.1:8080`
+- Bounded profile cache: optional env `BUTLER_CACHE_MAX_ENTRIES` (default 1000 in butler_profile.ps1)
 - Validate responses automatically
-- Cache responses for repeated queries
+- Cache responses for repeated queries (bounded cache)
 - Use GPU acceleration when available
-- Optimize prompts for specific use cases 
+- Optimize prompts for specific use cases

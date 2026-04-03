@@ -1,0 +1,27 @@
+name: CI Butler
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  parse:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse PowerShell scripts
+        shell: pwsh
+        run: pwsh -NoProfile -File "${{ github.workspace }}/scripts/ci_parse_pwsh.ps1"
+
+  unit:
+    runs-on: windows-latest
+    needs: parse
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pester unit tests
+        shell: pwsh
+        run: pwsh -NoProfile -File "${{ github.workspace }}/scripts/run_unit_tests.ps1"

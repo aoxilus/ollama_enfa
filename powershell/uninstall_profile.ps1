@@ -1,7 +1,7 @@
-# Uninstall Ollama PowerShell Profile
-# Desinstalar perfil de Ollama de PowerShell
+# Uninstall Cursor Butler PowerShell Profile
+# Desinstalar perfil de Cursor Butler de PowerShell
 
-Write-Host "🗑️  Desinstalando perfil de Ollama de PowerShell..." -ForegroundColor Yellow
+Write-Host "🗑️  Desinstalando perfil de Cursor Butler de PowerShell..." -ForegroundColor Yellow
 
 # Obtener ruta del perfil de PowerShell
 $profilePath = $PROFILE.CurrentUserAllHosts
@@ -15,40 +15,28 @@ if (-not (Test-Path $profilePath)) {
 # Leer contenido actual
 $content = Get-Content $profilePath -Raw
 
-# Verificar si contiene la integración de Ollama
-if ($content -match "ollama_profile\.ps1") {
-    Write-Host "🔍 Encontrada integración de Ollama en el perfil" -ForegroundColor Cyan
-    
-    # Remover líneas relacionadas con Ollama
-    $newContent = $content -replace "(?m)^.*ollama_profile\.ps1.*$", "" -replace "(?m)^# Ollama Integration.*$", "" -replace "(?m)^# Integración de Ollama.*$", ""
-    
-    # Limpiar líneas vacías múltiples
-    $newContent = $newContent -replace "(?m)^\s*$\n", "" -replace "(?m)^\s*$", ""
-    
-    # Escribir contenido limpio
-    try {
-        Set-Content -Path $profilePath -Value $newContent -Force
-        Write-Host "✅ Integración de Ollama removida del perfil" -ForegroundColor Green
-    } catch {
-        Write-Host "❌ Error al actualizar el perfil: $($_.Exception.Message)" -ForegroundColor Red
-        exit 1
-    }
+$startMarker = "# === Cursor Butler (auto) ==="
+$endMarker = "# === End Cursor Butler ==="
+
+if ($content -match [regex]::Escape($startMarker)) {
+    Write-Host "🔍 Encontrado bloque administrado de Cursor Butler en el perfil" -ForegroundColor Cyan
+    $pattern = "(?s)" + [regex]::Escape($startMarker) + ".*?" + [regex]::Escape($endMarker) + "\r?\n?"
+    $rx = [regex]::new($pattern)
+    $newContent = $rx.Replace($content, "", 1).Trim()
+} elseif ($content -match "butler_profile\.ps1") {
+    Write-Host "🔍 Encontrada referencia legacy a butler_profile.ps1; removiendo línea directa" -ForegroundColor Cyan
+    $newContent = ($content -replace "(?m)^\s*\.\s*['""]?.*butler_profile\.ps1['""]?\s*$\r?\n?", "").Trim()
 } else {
-    Write-Host "ℹ️  No se encontró integración de Ollama en el perfil" -ForegroundColor Cyan
+    Write-Host "ℹ️  No se encontró integración de Cursor Butler en el perfil" -ForegroundColor Cyan
+    $newContent = $content.Trim()
 }
 
-# Preguntar si quiere eliminar el archivo de perfil de Ollama
-$ollamaProfilePath = Join-Path $PSScriptRoot "ollama_profile.ps1"
-if (Test-Path $ollamaProfilePath) {
-    $removeFile = Read-Host "¿Eliminar archivo ollama_profile.ps1? (s/n)"
-    if ($removeFile -eq "s" -or $removeFile -eq "S" -or $removeFile -eq "y" -or $removeFile -eq "Y") {
-        try {
-            Remove-Item $ollamaProfilePath -Force
-            Write-Host "✅ Archivo ollama_profile.ps1 eliminado" -ForegroundColor Green
-        } catch {
-            Write-Host "❌ Error al eliminar archivo: $($_.Exception.Message)" -ForegroundColor Red
-        }
-    }
+try {
+    Set-Content -Path $profilePath -Value $newContent -Force
+    Write-Host "✅ Integración de Butler removida del perfil" -ForegroundColor Green
+} catch {
+    Write-Host "❌ Error al actualizar el perfil: $($_.Exception.Message)" -ForegroundColor Red
+    exit 1
 }
 
 Write-Host ""
