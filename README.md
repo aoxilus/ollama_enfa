@@ -1,46 +1,36 @@
-# Cursor Butler
+# Cursor Butler 🥑🚀
 
-**Local AI for developers** — run an OpenAI-compatible API on your machine with [llama.cpp](https://github.com/ggerganov/llama.cpp) (`llama-server`), integrate with **Cursor** and your shell, and ship changes only after reproducible checks.
+**Local AI for developers** — run an OpenAI-compatible API on your machine with [llama.cpp](https://github.com/ggerganov/llama.cpp) (`llama-server`), integrate with **Cursor** and your shell, and ship with reproducible checks.
 
-## Why teams use this
+If you are from the `var aguacate = x; function aguacate(){}` school: you are home. 🥑
 
-- **Data stays local** — no cloud round-trip for your prompts during development.
-- **One canonical client** — C++ runtime; PowerShell and Python stay thin wrappers.
-- **Deterministic quality gates** — PowerShell parse checks, Pester unit tests, and an integration script that pings the server then runs structured evaluations.
+## Why this is good 🧠
 
-## Architecture (short)
+- 🔒 **Local-first**: prompts stay on your machine.
+- ⚙️ **One canonical runtime**: C++ core, thin wrappers.
+- ✅ **Real quality gates**: parse + unit + integration.
+- 🧰 **Terminal friendly**: setup and verify scripts ready to run.
 
-| Layer | Role |
-|--------|------|
-| **llama-server** | GGUF model + HTTP API (default `http://127.0.0.1:8080`, model id `local`) |
-| **`cpp/ollama_client.cpp`** | Canonical chat client (`POST /v1/chat/completions`) |
-| **`powershell/ButlerCppBridge.ps1`** | Invokes the built binary; override path with `BUTLER_CPP_CLIENT` |
-| **`powershell/butler_profile.ps1`** | Shell commands (`ask`, `fast`, …); uses C++ when the exe exists |
-| **`python/butler_wrapper.py`** | Optional: forwards argv to the same binary with machine-oriented stdout |
-
-## Requirements
-
-- **Windows** workflows are first-class (`pwsh`). A working **llama-server** binary and a **GGUF** model (see `powershell/setup_butler.ps1` for defaults).
-- To build the C++ client: toolchain with **C++17**, **libcurl**, **OpenSSL**, **nlohmann/json** (see `cpp/Makefile`).
-
-## Quick start
+## Quick start (2 commands) 🟢
 
 ```powershell
 pwsh -NoProfile -ExecutionPolicy Bypass -File powershell/setup_butler.ps1
 pwsh -NoProfile -ExecutionPolicy Bypass -File verify.ps1
 ```
 
-`verify.ps1` runs `test/ping_model.ps1` (unless `-SkipPing`) then `test/run_3_programs_and_evaluate.ps1`. Use `-PingTimeoutSec` if the server is slow to load the model.
+`verify.ps1` runs:
+1. `test/ping_model.ps1`
+2. `test/run_3_programs_and_evaluate.ps1`
 
-## Terminal example
+Use `-SkipPing` or `-PingTimeoutSec` when needed.
 
-Generate a small program from terminal (Fibonacci in PowerShell):
+## Terminal example (Fibonacci 🥑)
 
 ```powershell
 # If profile is installed:
 code "Write a PowerShell script that prints the first 10 Fibonacci numbers."
 
-# Or direct endpoint call:
+# Direct endpoint call:
 $body = @{
   model = "local"
   messages = @(
@@ -53,54 +43,37 @@ $body = @{
 Invoke-RestMethod -Uri "http://127.0.0.1:8080/v1/chat/completions" -Method Post -ContentType "application/json" -Body ($body | ConvertTo-Json -Depth 8)
 ```
 
-## PowerShell profile (optional)
+## What we publish to GitHub 📦
 
-Install the managed profile block (idempotent):
+- `cpp/` → canonical client (`cpp/ollama_client.cpp`)
+- `powershell/` → setup/profile/bridge scripts
+- `python/` → `butler_wrapper.py` shim
+- `test/` + `scripts/` + `verify.ps1` → validation flow
+- Root docs (`README.md`, `CHANGELOG.md`, etc.) → product-facing only
 
-```powershell
-pwsh -NoProfile -ExecutionPolicy Bypass -File powershell/install_profile.ps1 -Yes
-```
+## What we do NOT publish (local noise) 🙈
 
-Uninstall: `powershell/uninstall_profile.ps1`.
+- Model files, local caches, logs, machine-specific artifacts
+- Personal notes/work-in-progress scratch
 
-## Building the C++ client
+Use `.gitignore` to keep those out. That is part of the secret sauce. 🤫🥑
+
+## Build C++ client 🛠️
 
 ```bash
 cd cpp
 make build
-# Windows (MSYS2): use the Makefile targets or compile ollama_client.cpp with -lcurl -lssl -lcrypto
 ```
 
-Output name: `ollama_client` or `ollama_client.exe`. Set `BUTLER_CPP_CLIENT` to a full path if the binary lives elsewhere.
+Set `BUTLER_CPP_CLIENT` if your binary path is custom.
 
-## Repository layout
-
-| Path | Purpose |
-|------|---------|
-| `powershell/` | Setup, profile, C++ bridge |
-| `cpp/` | Canonical HTTP client source |
-| `python/` | `butler_wrapper.py` shim only |
-| `test/` | Ping, evaluation runner, fixtures, Pester tests under `test/unit/` |
-| `scripts/` | `ci_parse_pwsh.ps1`, `run_unit_tests.ps1` |
-| `verify.ps1` | Official integration entry point |
-
-`test/legacy/` is reserved (no active product scripts).
-
-## CI / local gates
+## CI / local gates 🧪
 
 ```powershell
 pwsh -NoProfile -File scripts/ci_parse_pwsh.ps1
 pwsh -NoProfile -File scripts/run_unit_tests.ps1
 ```
 
-## Privacy & security
-
-This project is oriented toward **local inference**. You choose the model and where it runs; outbound traffic depends only on your server configuration (e.g. model download during setup).
-
 ## License
 
-See [LICENSE](LICENSE).
-
-## Trademark note
-
-*Cursor* is a trademark of its respective owner. This repository is an independent integration template and is not affiliated with or endorsed by Cursor or the llama.cpp project.
+MIT — see [LICENSE](LICENSE).
