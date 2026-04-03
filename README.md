@@ -32,6 +32,27 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File verify.ps1
 
 `verify.ps1` runs `test/ping_model.ps1` (unless `-SkipPing`) then `test/run_3_programs_and_evaluate.ps1`. Use `-PingTimeoutSec` if the server is slow to load the model.
 
+## Terminal example
+
+Generate a small program from terminal (Fibonacci in PowerShell):
+
+```powershell
+# If profile is installed:
+code "Write a PowerShell script that prints the first 10 Fibonacci numbers."
+
+# Or direct endpoint call:
+$body = @{
+  model = "local"
+  messages = @(
+    @{ role = "user"; content = "Write a PowerShell script that prints the first 10 Fibonacci numbers. Output only code." }
+  )
+  temperature = 0.2
+  max_tokens = 300
+  stream = $false
+}
+Invoke-RestMethod -Uri "http://127.0.0.1:8080/v1/chat/completions" -Method Post -ContentType "application/json" -Body ($body | ConvertTo-Json -Depth 8)
+```
+
 ## PowerShell profile (optional)
 
 Install the managed profile block (idempotent):
