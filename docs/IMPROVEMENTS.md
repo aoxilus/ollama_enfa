@@ -7,4 +7,3 @@ This file is kept for historical context only. The active, modern plan and opera
 - `docs/README.md`
 - `docs/README.es.md`
 - `docs/DMAIC.md`
-- `docs/AGENTS.md`

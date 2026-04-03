@@ -1,11 +1,9 @@
 # Cursor Butler (llama.cpp local)
 
-**AI:** read `AGENTS.md` first.
-
 Local AI for Cursor via `llama-server` (OpenAI-compatible API).
 
 - Endpoint: `http://127.0.0.1:8080`
-- Tests: `test/`
+- Tests: `test/` (Butler). `test/legacy/` holds only `README.md` (excluded from parse CI).
 
 Spanish: [README.es.md](README.es.md). Process: [DMAIC.md](DMAIC.md).
 
@@ -29,6 +27,17 @@ Uses `test/ping_model.ps1` then `test/run_3_programs_and_evaluate.ps1`. Flags: `
 - Parse: `pwsh -NoProfile -File scripts/ci_parse_pwsh.ps1`
 - Unit: `pwsh -NoProfile -File scripts/run_unit_tests.ps1` (victory gate for PS/C++ bridge contract)
 
+## Layout (short)
+
+| Area | Role |
+|------|------|
+| `cpp/` | Single client source; build → `ollama_client` / `.exe` |
+| `powershell/` | Setup, profile, C++ bridge (no duplicate chat implementations) |
+| `python/` | Thin `butler_wrapper.py` → same binary as profile |
+| `test/` | Ping, eval runner, optional UI/form demos under `generated/`, Pester under `unit/` |
+
+Full table: `INDEX.md`.
+
 ## Conventions
 
 - `powershell/butler_profile.ps1`: bounded cache (`BUTLER_CACHE_MAX_ENTRIES`, default 1000).
@@ -42,7 +51,7 @@ Log CPU/GPU, `llama-server` build, GGUF path, flags (e.g. `--ctx-size`). Logs: `
 ## Better than previous GitHub baseline
 
 - One canonical runtime: `cpp/ollama_client.cpp` (no multi-client drift).
-- Product docs consolidated under `docs/` with AI contract in `docs/AGENTS.md`.
+- Product docs consolidated under `docs/` with one product-facing index.
 - Deterministic gates: parse + unit + integration (`verify.ps1`) as release criteria.
 - Cleaner scope: legacy Ollama-era payloads removed from active product path.
 - Clear bridge model: PowerShell/Python are wrappers around canonical C++ behavior.

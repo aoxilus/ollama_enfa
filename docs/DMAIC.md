@@ -1,6 +1,6 @@
 # DMAIC — Cursor Butler (llama.cpp local)
 
-**AI:** `docs/AGENTS.md` for orchestration. Product markdown lives under `docs/`.
+Product markdown lives under `docs/`.
 
 Structured improvement loop for this repo. **CTQ** = reliable local inference + reproducible verification on Windows.
 
@@ -42,7 +42,7 @@ Record **before/after** when changing model, server build, or prompts.
 | “Profile broken” | Duplicate dot-source or wrong path | Manual profile edit; use marked block from `install_profile.ps1` |
 | CI red (parse) | Syntax error in `test/` or core `powershell/*` | `PARSE_FAIL` path in CI log |
 | CI red (unit) | Bridge regression or Pester failure | `run_unit_tests.ps1` / Pester output |
-| Doc contradiction | Second source of truth | Compare `docs/README.md`, `docs/README.es.md`, `docs/AGENTS.md`, `.cursorrules` |
+| Doc contradiction | Second source of truth | Compare `docs/README.md`, `docs/README.es.md`, `docs/DMAIC.md`, `.cursorrules` |
 
 ---
 
@@ -181,7 +181,7 @@ Definition of done:
 
 | Control | Owner | Trigger |
 |---------|--------|---------|
-| **Repo contract** | Maintainers + AI assistants | `.cursorrules` — do not contradict `docs/README.md` / `docs/README.es.md` / `docs/AGENTS.md` |
+| **Repo contract** | Maintainers + AI assistants | `.cursorrules` — do not contradict `docs/README.md` / `docs/README.es.md` / `docs/DMAIC.md` |
 | **Release gate** | Contributor | Run `verify.ps1` after any change to setup, runner, or profile |
 | **Static gate** | CI + local | `scripts/ci_parse_pwsh.ps1` on push/PR |
 | **Unit gate** | CI + local | `scripts/run_unit_tests.ps1` after parse job |
