@@ -1,5 +1,5 @@
 #!/usr/bin/env pwsh
-# Cursor Butler PowerShell Integration Profile
+# Aoxilus Butler PowerShell Integration Profile
 # Local AI via llama.cpp server (OpenAI-compatible API)
 # Timers: si se cuelga ya bye. See https://learn.microsoft.com/en-us/windows/ai/overview
 # When cpp/ollama_client.exe exists (or BUTLER_CPP_CLIENT), chat runs in C++ (ButlerCppBridge.ps1).
@@ -93,7 +93,7 @@ function Invoke-ButlerChat {
         [Parameter(Mandatory=$false)]
         [int]$TimeoutSec = 0,
         [Parameter(Mandatory=$false)]
-        [string]$SystemPrompt = "You are Cursor Butler. Answer concisely. If code is requested, output only working code.",
+        [string]$SystemPrompt = "You are Aoxilus Butler. Answer concisely. If code is requested, output only working code.",
         [switch]$ChatFast
     )
     if ($TimeoutSec -le 0) {
@@ -204,7 +204,7 @@ function Generate-Code {
         }
     }
     try {
-        $r = Invoke-ButlerChat -Prompt $p -MaxTokens 600 -Temperature 0.2 -TimeoutSec 120 -SystemPrompt "You are Cursor Butler. Output only working code. No markdown fences. No explanation."
+        $r = Invoke-ButlerChat -Prompt $p -MaxTokens 600 -Temperature 0.2 -TimeoutSec 120 -SystemPrompt "You are Aoxilus Butler. Output only working code. No markdown fences. No explanation."
         if (-not $NoCache) {
             Set-ButlerCachedResponse -Prompt $p -Model $env:BUTLER_MODEL -ResponseText $r.Text
         }
@@ -234,7 +234,7 @@ function Analyze-File {
     }
     $p = "Analyze this file and give concise actionable feedback.`nFILE: $Path`nCONTENT:`n$text"
     try {
-        $r = Invoke-ButlerChat -Prompt $p -MaxTokens 300 -Temperature 0.2 -TimeoutSec 120 -SystemPrompt "You are Cursor Butler. Give concise actionable feedback on the file."
+        $r = Invoke-ButlerChat -Prompt $p -MaxTokens 300 -Temperature 0.2 -TimeoutSec 120 -SystemPrompt "You are Aoxilus Butler. Give concise actionable feedback on the file."
         Write-Host $r.Text -ForegroundColor White
     } catch {
         Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
@@ -251,7 +251,7 @@ function Set-ButlerModel {
 
 function Get-ButlerStatus {
     $endpoint = $env:BUTLER_ENDPOINT.TrimEnd("/")
-    Write-Host "Cursor Butler:" -ForegroundColor Cyan
+    Write-Host "Aoxilus Butler:" -ForegroundColor Cyan
     Write-Host "  Endpoint: $endpoint" -ForegroundColor White
     Write-Host "  Model: $env:BUTLER_MODEL" -ForegroundColor White
     Write-Host "  Cache: $($script:ButlerCache.Count) entries" -ForegroundColor White

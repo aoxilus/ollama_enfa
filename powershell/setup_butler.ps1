@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-  Cursor Butler setup: llama.cpp server + GGUF model + smoke test
+  Aoxilus Butler setup: llama.cpp server + GGUF model + smoke test
 .PARAMETER BaseDir
   Where to install binaries/models (default: repo/.butler)
 .PARAMETER Port
@@ -40,7 +40,7 @@ function Confirm-Step {
 
 function Get-LlamaCppRelease {
     $u = "https://api.github.com/repos/ggml-org/llama.cpp/releases/latest"
-    $r = Invoke-RestMethod -Uri $u -Method Get -Headers @{ "User-Agent" = "CursorButlerSetup" }
+    $r = Invoke-RestMethod -Uri $u -Method Get -Headers @{ "User-Agent" = "AoxilusButlerSetup" }
     if (-not $r -or -not $r.assets) { throw "Could not query llama.cpp releases" }
 
     $asset = $r.assets | Where-Object { $_.name -like "*bin-win-cpu-x64.zip" } | Select-Object -First 1
@@ -201,5 +201,5 @@ try {
     }
 }
 
-Write-Host "Cursor Butler ready. Endpoint: $endpoint" -ForegroundColor Cyan
+Write-Host "Aoxilus Butler ready. Endpoint: $endpoint" -ForegroundColor Cyan
 

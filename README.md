@@ -1,6 +1,6 @@
-# Cursor Butler 🥑🚀
+# Aoxilus Butler 🥑🚀
 
-**Local AI for developers** — run an OpenAI-compatible API on your machine with [llama.cpp](https://github.com/ggerganov/llama.cpp) (`llama-server`), integrate with **Cursor** and your shell, and ship with reproducible checks.
+**Local AI for developers** — run an OpenAI-compatible API on your machine with [llama.cpp](https://github.com/ggerganov/llama.cpp) (`llama-server`), integrate with your editor and your shell, and ship with reproducible checks.
 
 If you are from the `var aguacate = x; function aguacate(){}` school: you are home. 🥑
 
@@ -77,3 +77,5 @@ pwsh -NoProfile -File scripts/run_unit_tests.ps1
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+Made with 🥑 by [aoxilus](https://github.com/aoxilus)

@@ -83,7 +83,7 @@ All notable changes to this project will be documented in this file.
 ## [2.4.0] - 2025-07-30
 
 ### Added
-- **Fix Scripts** - Various scripts for Cursor AI terminal issues
+- **Fix Scripts** - Various scripts for terminal issues
 - **Emergency Fix Python** - `cursor_ai_emergency_fix.py`
 - **Simple Fix Batch** - `fix_cursor_simple.bat`
 - **Safe Command Wrapper** - `safe_command.bat`
@@ -166,7 +166,7 @@ All notable changes to this project will be documented in this file.
 ## [2.0.0] - 2025-07-30
 
 ### Added
-- **Cursor AI Timeout Integration** - `.vscode/settings.json`
+- **Editor timeout integration** - `.vscode/settings.json`
   - Automatic 30-second timeout for terminal commands
   - PowerShell and Command Prompt profiles
   - Environment variable configuration
@@ -176,7 +176,7 @@ All notable changes to this project will be documented in this file.
 - **Timeout Protection** - Prevents hanging commands
 - **Profile Configuration** - Optimized terminal profiles
 - **Environment Variables** - PSDefaultParameterValues setup
-- **Terminal Integration** - Seamless Cursor AI integration
+- **Terminal Integration** - Terminal-friendly workflow
 
 ## [1.0.0] - 2025-07-30
 

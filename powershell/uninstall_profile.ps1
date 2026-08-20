@@ -1,7 +1,7 @@
-# Uninstall Cursor Butler PowerShell Profile
-# Desinstalar perfil de Cursor Butler de PowerShell
+# Uninstall Aoxilus Butler PowerShell Profile
+# Desinstalar perfil de Aoxilus Butler de PowerShell
 
-Write-Host "🗑️  Desinstalando perfil de Cursor Butler de PowerShell..." -ForegroundColor Yellow
+Write-Host "🗑️  Desinstalando perfil de Aoxilus Butler de PowerShell..." -ForegroundColor Yellow
 
 # Obtener ruta del perfil de PowerShell
 $profilePath = $PROFILE.CurrentUserAllHosts
@@ -15,11 +15,11 @@ if (-not (Test-Path $profilePath)) {
 # Leer contenido actual
 $content = Get-Content $profilePath -Raw
 
-$startMarker = "# === Cursor Butler (auto) ==="
-$endMarker = "# === End Cursor Butler ==="
+$startMarker = "# === Aoxilus Butler (auto) ==="
+$endMarker = "# === End Aoxilus Butler ==="
 
 if ($content -match [regex]::Escape($startMarker)) {
-    Write-Host "🔍 Encontrado bloque administrado de Cursor Butler en el perfil" -ForegroundColor Cyan
+    Write-Host "🔍 Encontrado bloque administrado de Aoxilus Butler en el perfil" -ForegroundColor Cyan
     $pattern = "(?s)" + [regex]::Escape($startMarker) + ".*?" + [regex]::Escape($endMarker) + "\r?\n?"
     $rx = [regex]::new($pattern)
     $newContent = $rx.Replace($content, "", 1).Trim()
@@ -27,7 +27,7 @@ if ($content -match [regex]::Escape($startMarker)) {
     Write-Host "🔍 Encontrada referencia legacy a butler_profile.ps1; removiendo línea directa" -ForegroundColor Cyan
     $newContent = ($content -replace "(?m)^\s*\.\s*['""]?.*butler_profile\.ps1['""]?\s*$\r?\n?", "").Trim()
 } else {
-    Write-Host "ℹ️  No se encontró integración de Cursor Butler en el perfil" -ForegroundColor Cyan
+    Write-Host "ℹ️  No se encontró integración de Aoxilus Butler en el perfil" -ForegroundColor Cyan
     $newContent = $content.Trim()
 }
 

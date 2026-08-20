@@ -185,7 +185,7 @@ MONITORING_INTERVAL=5
         script_content = """#!/bin/bash
 # Ollama Quick Start Script
 
-echo "🚀 Starting Ollama Desktop Cursor AI..."
+echo "🚀 Starting Aoxilus Butler..."
 
 # Check if Ollama is running
 if ! curl -s http://localhost:11434/api/tags > /dev/null; then

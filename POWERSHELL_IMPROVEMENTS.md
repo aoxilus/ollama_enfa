@@ -182,7 +182,7 @@ $USE_DIRECT_OLLAMA = $false
 ### En Desarrollo
 1. **Interfaz gráfica** - PowerShell GUI
 2. **API REST** - Servicio web
-3. **Integración con IDEs** - VS Code, Cursor
+3. **Integración con IDEs**
 4. **Machine Learning** - Optimización automática
 
 ## 📚 Referencias

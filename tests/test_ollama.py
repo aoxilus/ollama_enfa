@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Automated Tests for Ollama Desktop Cursor AI
+Automated Tests for Aoxilus Butler
 """
 
 import unittest
@@ -301,7 +301,7 @@ if __name__ == "__main__":
         return result.wasSuccessful()
     
     # Run both sync and async tests
-    print("Running Ollama Desktop Cursor AI Tests...")
+    print("Running Aoxilus Butler Tests...")
     print("=" * 50)
     
     # Run sync tests

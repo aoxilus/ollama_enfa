@@ -1,4 +1,4 @@
-# Ollama Desktop Cursor AI - Mejoras Implementadas
+# Aoxilus Butler - Mejoras Implementadas
 
 ## 🚀 Resumen de Optimizaciones
 
@@ -125,9 +125,8 @@ python setup_ollama.py
 - ✅ Configuración GPU documentada
 - ✅ Troubleshooting actualizado
 
-### **.cursorrules**
-- ✅ Modelo actualizado a codellama:7b-code-q4_K_M
-- ✅ Parámetros de optimización agregados
+### **Repo contract**
+- ✅ Modelo y parámetros de optimización documentados
 - ✅ Mejores prácticas documentadas
 
 ### **python/requirements.txt**
@@ -188,7 +187,7 @@ python python/benchmark_ollama.py
 
 ## 🏆 **Conclusión:**
 
-El sistema Ollama Desktop Cursor AI ha sido **completamente optimizado** y ahora ofrece:
+El sistema Aoxilus Butler ha sido **completamente optimizado** y ahora ofrece:
 
 - **Velocidad**: Respuestas en <1s para preguntas simples
 - **Precisión**: 100% en tests matemáticos

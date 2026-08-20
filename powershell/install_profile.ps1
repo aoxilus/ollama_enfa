@@ -1,4 +1,4 @@
-# Install Cursor Butler PowerShell Profile (idempotent)
+# Install Aoxilus Butler PowerShell Profile (idempotent)
 
 param(
     [switch]$Yes
@@ -7,7 +7,7 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-Write-Host "Instalando perfil de Cursor Butler..." -ForegroundColor Green
+Write-Host "Instalando perfil de Aoxilus Butler..." -ForegroundColor Green
 
 $profilePath = $PROFILE.CurrentUserAllHosts
 $profileDir = Split-Path $profilePath -Parent
@@ -25,8 +25,8 @@ if (-not (Test-Path -LiteralPath $butlerProfilePath)) {
 
 $butlerProfilePath = (Resolve-Path -LiteralPath $butlerProfilePath).Path
 
-$startMarker = "# === Cursor Butler (auto) ==="
-$endMarker = "# === End Cursor Butler ==="
+$startMarker = "# === Aoxilus Butler (auto) ==="
+$endMarker = "# === End Aoxilus Butler ==="
 $newBlock = @"
 $startMarker
 . '$butlerProfilePath'

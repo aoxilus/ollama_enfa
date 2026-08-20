@@ -37,7 +37,7 @@ function Invoke-ButlerCppInvoke {
         [double]$Temperature = 0.7,
         [int]$TimeoutSec = 30,
         [switch]$ChatFast,
-        [string]$SystemPrompt = "You are Cursor Butler. Answer concisely. If code is requested, output only working code."
+        [string]$SystemPrompt = "You are Aoxilus Butler. Answer concisely. If code is requested, output only working code."
     )
 
     $exe = Get-ButlerCppExecutable
