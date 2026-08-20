@@ -76,6 +76,6 @@ pwsh -NoProfile -File scripts/run_unit_tests.ps1
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+CC BY-NC-SA 4.0 — see [LICENSE](LICENSE).
 
 Made with 🥑 by [aoxilus](https://github.com/aoxilus)
